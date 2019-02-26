@@ -1,0 +1,49 @@
+<div class="lregister-form">
+  <form [formGroup]="registerForm" (ngSubmit)="onRegister()" class="px-3 pt-3 pb-0">
+    <div class="form-group">
+      <label for="firstName" class="col-form-label">First Name</label>
+      <input type="text" class="form-control" placeholder="" formControlName="firstName" required=""
+        [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+      <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+        <div *ngIf="f.firstName.errors.required">First Name is required</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="recipient-name" class="col-form-label">Last Name</label>
+      <input type="text" class="form-control" placeholder="" formControlName="lastName" id="recipient-name3" required=""
+        [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+      <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+        <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="recipient-name" class="col-form-label">Email id</label>
+      <input type="email" class="form-control" placeholder="" formControlName="email" id="recipient-name4" required=""
+        [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+        <div *ngIf="f.email.errors.required">Email Id is required</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="recipient-name" class="col-form-label">Mobile Number</label>
+      <input type="text" class="form-control" placeholder="" formControlName="mobile" id="recipient-name5" required=""
+        [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }" />
+      <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+        <div *ngIf="f.mobile.errors.required">Mobile Number is required</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="recipient-name1" class="col-form-label">Password</label>
+      <input type="password" class="form-control" placeholder="" formControlName="password" id="recipient-name6"
+        required="" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+        <div *ngIf="f.password.errors.required">Password is required</div>
+        <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+      </div>
+    </div>
+    <div class="right-w3l">
+      <input type="submit" class="form-control" value="Get Started" />
+    </div>
+  </form>
+</div>
+<a class="close" (click)="close()" href="home#">&times;</a>
