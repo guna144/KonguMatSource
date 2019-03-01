@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { KonguService } from "../../../app/services/kongu.service";
-import { ActivatedRoute, Router } from "@angular/router";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { KonguService } from '../../../app/services/kongu.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-register',
@@ -11,6 +12,8 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
+  agreeForm: FormGroup;
+  paymentForm: FormGroup;
   loading = false;
   submitted = false;
   constructor(
@@ -25,18 +28,46 @@ export class RegisterComponent implements OnInit {
   }
 
   // onAboutButton(): void {
-  //   this._router.navigate(["/about"]);
+  //   this._router.navigate(['/about']);
   // }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      firstName: ["", Validators.required],
-      lastName: ["", Validators.required],
-      email: ["", Validators.required],
-      mobile: ["", Validators.required],
-      password: ["", [Validators.required, Validators.minLength(6)]],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', Validators.required],
+      mobile: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6)]],
       flag: true,
-      role: "admin"
+      role: 'admin'
+    });
+
+    this.agreeForm = this.formBuilder.group({
+
+    });
+
+    this.paymentForm = this.formBuilder.group({
+      chequeNumber: ['', Validators.required],
+      bankName: ['', Validators.required],
+      branchName: ['', Validators.required],
+      amount: ['', Validators.required]
+    });
+
+    $(document).ready(function () {
+      $('#agreeForm').hide();
+      $('#paymentFrm').hide();
+      $('#offlineForm').hide();
+
+      $('#next').click(function () {
+        $('#paymentFrm').show();
+        $('#agreeForm').hide();
+      });
+
+      $('#finish').click(function () {
+        $('#paymentFrm').hide();
+        $('#regForm').show();
+        // redirect to profile page......
+      });
     });
   }
 
@@ -52,28 +83,56 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.invalid) {
       return;
     }
+    $('#agreeForm').show();
+    $('#next').hide();
+    $('#regForm').hide();
+    this.close();
+
 
     this.loading = true;
-    this._service.register(this.registerForm.value).subscribe(
-      data => {
-        console.log("Registration successful");
-        //this.alertService.success("Registration successful", true);
-        //this.router.navigate(["/login"]);
-      },
-      error => {
-        // this.alertService.error(error);
-        this.loading = false;
-      }
-    );
+    // this._service.register(this.registerForm.value).subscribe(
+    //   data => {
+    //     console.log('Registration successful');
+    //     // this.alertService.success('Registration successful', true);
+    //     // this.router.navigate(['/login']);
+    //     $('#agreeForm').show();
+    //     $('#regForm').hide();
+    //   },
+    //   error => {
+    //     // this.alertService.error(error);
+    //     this.loading = false;
+    //   }
+    // );
   }
 
   close() {
     this.registerForm = this.formBuilder.group({
-      firstName: "",
-      lastName: "",
-      email: "",
-      mobile: "",
-      password: ""
+      firstName: '',
+      lastName: '',
+      email: '',
+      mobile: '',
+      password: ''
     });
+  }
+
+  closeAgreePopup() {
+    // console.log($('#closeBtn'));
+    $('#agreeForm').hide();
+    $('#regForm').show();
+    this.agreeForm = this.formBuilder.group({
+      agree: ''
+    });
+  }
+
+  agreeCall() {
+    $('#next').show();
+  }
+
+  onLine() {
+    $('#offlineForm').hide();
+  }
+
+  offLine() {
+    $('#offlineForm').show();
   }
 }

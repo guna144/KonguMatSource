@@ -10,8 +10,24 @@
         <a class="btn btn-info1 btn-lg-block w3ls-btn1 px-sm-4 px-3 text-capitalize"
           href="/home#register-popup">Register</a>
       </div>
+      <!-- logout menu -->
+      <div class="dropdown">
+        <a class="account">My Account</a>
+        <div class="submenu">
+          <ul class="root">
+            <li><a href="#Dashboard">Dashboard</a></li>
+            <li><a href="#Profile">Profile</a></li>
+            <li><a href="#settings">Settings</a></li>
+            <li><a href="#feedback">Send Feedback</a></li>
+            <li><a href="#logout">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- logout menu -->
+
     </section>
     <!-- top header -->
+
     <!-- nav -->
     <nav class="py-3">
       <div id="logo">
@@ -78,7 +94,7 @@
       <!-- To bottom button-->
       <div class="thim-click-to-bottom">
         <div class="rotate">
-          <a href="#welcome" class="scroll">
+          <a href="home#welcome" class="scroll">
             <span class="fa fa-angle-double-down"></span>
           </a>
         </div>
@@ -409,7 +425,6 @@
 <!-- popup for login -->
 <div id="login-popup" class="popup-effect">
   <div class="popup">
-    <h5 class="modal-title text-uppercase">Login</h5>
     <app-login></app-login>
     <!-- <div class="login-form">
       <form action="#" [formGroup]="registerForm" class="px-3 pt-3 pb-0" (ngSubmit)="onLogin()">
@@ -433,10 +448,12 @@
 </div>
 <!-- popup for login -->
 
+
+
+
 <!-- popup for register -->
 <div id="register-popup" class="popup-effect">
   <div class="popup">
-    <h5 class="modal-title text-uppercase">Register</h5>
     <app-register></app-register>
     <!-- <div class="lregister-form">
       <form [formGroup]="registerForm" (ngSubmit)="onRegister()" class="px-3 pt-3 pb-0">

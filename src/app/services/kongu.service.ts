@@ -7,14 +7,15 @@ import { Observable } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class KonguService {
 
-  private URL = 'https://kmat.herokuapp.com';
+  private serviceURL = 'http//localhost:9090';
 
   constructor(private _http: HttpClient) { }
   register(user: User) {
-    return this._http.post(this.URL + `/signUp`, user);
+    return this._http.post(this.serviceURL + `/signUp`, user);
   }
 
-  login(userId: string, passowrd: string) {
-    return this._http.post(this.URL + `/signIn`, { username: userId, passowrd: passowrd });
+  login(userId: string, password: string) {
+    console.log('Test data in service', userId, password);
+    return this._http.post(this.serviceURL + `/signIn`, { mobile: userId, password: password });
   }
 }
