@@ -75,7 +75,6 @@ nav {
 	padding: 0;
 }
 
-
 #logo a {
     float: left;
     font-size: 1em;
@@ -97,7 +96,7 @@ nav {
     font-size: inherit;
 }
 #logo a span {
-    color: #fff;
+    color: #004b1a;
     position: absolute;
     font-size: 17px;
     bottom: -28%;
