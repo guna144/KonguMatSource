@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { KonguService } from '../../../app/services/kongu.service';
+import { KonguService } from '../../../app/_services/kongu.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as $ from 'jquery';

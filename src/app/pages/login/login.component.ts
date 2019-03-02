@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { KonguService } from '../../../app/services/kongu.service';
+import { KonguService } from '../../../app/_services/kongu.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AlertService } from '../../_services/alert.service';
 
 import * as $ from 'jquery';
 
@@ -16,17 +17,22 @@ export class LoginComponent implements OnInit {
   public forgotPasswordForm: FormGroup;
   loading = false;
   submitted = false;
+  returnUrl: string;
+
   constructor(
     private _service: KonguService,
     private _activateRoute: ActivatedRoute,
     private _router: Router,
     private formBuilder: FormBuilder,
-    private router: Router
-  ) { }
+    private alertService: AlertService) { }
 
 
 
   ngOnInit() {
+
+    // get return url from route parameters or default to '/'
+    this.returnUrl = this._activateRoute.snapshot.queryParams['returnUrl'] || '/profile';
+
     this.loginForm = this.formBuilder.group({
       emailMobile: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -58,13 +64,16 @@ export class LoginComponent implements OnInit {
 
     this.loading = true;
     this._service.login(this.loginForm.value.emailMobile, this.loginForm.value.password).subscribe(
-      data => {
-        console.log('Login successful :: ', data);
+      userData => {
+
+        console.log('Login successful :: ', userData);
+        localStorage.setItem('currentUser', JSON.stringify(userData));
+        this._router.navigate([this.returnUrl]);
         // this.alertService.success('Registration successful', true);
         // this.router.navigate(['/login']);
       },
       error => {
-        // this.alertService.error(error);
+        this.alertService.error(error);
         this.loading = false;
       }
     );

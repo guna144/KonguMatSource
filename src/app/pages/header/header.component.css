@@ -36,7 +36,7 @@ text-decoration:none;
 
 .dropdown li a:hover
 {
-background: rgb(61, 6, 6); /* #155FB0; */
+background: #FFFFFF; /* #155FB0; */
 color:#555; /* #FFFFFF; */
 text-decoration: none;
 }
@@ -44,17 +44,19 @@ a.account
 {
 font-size: 14px;
 line-height: 16px;
-color: rgb(129, 10, 10); /* #555; */
+color: #feed01; /* #555; */
 position: absolute;
 z-index: 110;
 display: block;
 padding: 11px 0 0 20px;
-height: 50px;
-width: 160px;
+border-radius: 6px;
+height: 40px;
+width: 135px;
 margin: -11px 0 0 -10px;
 text-decoration: none;
 background: url(../../../assets/icons/user.png) 102px 7px no-repeat;
 cursor:pointer;
+background-color: #004b1a;
 }
 .root
 {

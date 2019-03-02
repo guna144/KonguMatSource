@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 // import { ActivatedRoute, Router } from '@angular/router';
 // import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginComponent } from '../login/login.component';
+import { User } from '../../_models/user';
 import * as $ from 'jquery';
 @Component({
   selector: 'app-home',
@@ -29,41 +30,13 @@ export class HomeComponent implements OnInit {
   // //   this._router.navigate(['/about']);
   // // }
 
+  currentUser: User;
+
+  constructor() {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  }
+
   ngOnInit() {
-
-    $(document).ready(function () {
-
-      $('.account').click(function () {
-        var X = $(this).attr('id');
-        if (X == 1) {
-          $('.submenu').hide();
-          $(this).attr('id', '0');
-        }
-        else {
-          $('.submenu').show();
-          $(this).attr('id', '1');
-        }
-
-      });
-
-      //Mouse click on sub menu
-      $('.submenu').mouseup(function () {
-        return false
-      });
-
-      //Mouse click on my account link
-      $('.account').mouseup(function () {
-        return false
-      });
-
-
-      //Document Click
-      $(document).mouseup(function () {
-        $('.submenu').hide();
-        $('.account').attr('id', '');
-      });
-    });
-
   }
   //   this.registerForm = this.formBuilder.group({
   //     firstName: ['', Validators.required],
@@ -103,7 +76,4 @@ export class HomeComponent implements OnInit {
   //   );
   // }
 
-  // onLogin() {
-
-  // }
 }

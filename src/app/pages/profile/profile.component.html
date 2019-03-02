@@ -1,0 +1,311 @@
+<!-- header -->
+<header>
+  <div class="container">
+    <!-- top header -->
+    <app-header></app-header>
+    <!-- top header -->
+  </div>
+</header>
+<br>
+<br>
+<br>
+<br><br>
+<br>
+<div class="container" id="settings">
+  <h2>My Profile</h2>
+  <hr>
+  <form class="form" action="##" method="post" id="registrationForm" (ngSubmit)="profileUpdate()">
+    <div class="form-group">
+      <div class="col-xs-4">
+        <label for="first_name">
+          <h4>First name</h4>
+        </label>
+        <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name"
+          title="enter your first name if any.">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-xs-4">
+        <label for="last_name">
+          <h4>Last name</h4>
+        </label>
+        <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name"
+          title="enter your last name if any.">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-xs-4">
+        <label for="mobile">
+          <h4>Mobile</h4>
+        </label>
+        <input type="text" class="form-control" name="mobile" id="mobile" placeholder="enter mobile number"
+          title="enter your mobile number if any.">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-xs-4">
+        <label for="email">
+          <h4>Email</h4>
+        </label>
+        <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com"
+          title="enter your email.">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-xs-4">
+        <label for="email">
+          <h4>Address</h4>
+        </label>
+        <input type="text" class="form-control" id="address" placeholder="somewhere" title="enter a address">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-xs-4">
+        <label for="height">
+          <h4>Height</h4>
+        </label>
+        <input type="text" class="form-control" name="height" id="height" placeholder="enter height"
+          title="enter your height number if any.">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-xs-4">
+        <label for="weight">
+          <h4>Weight</h4>
+        </label>
+        <input type="text" class="form-control" name="weight" id="weight" placeholder="enter weight"
+          title="enter your weight number if any.">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-xs-4">
+        <label for="bodytype">
+          <h4>Body Type</h4>
+        </label>
+        <input type="text" class="form-control" name="bodytype" id="bodytype" placeholder="enter Body Type"
+          title="enter your Body Type number if any.">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-xs-4">
+        <label for="foodhabits">
+          <h4>Food Habits</h4>
+        </label>
+        <input type="text" class="form-control" name="foodhabits" id="foodhabits" placeholder="enter Food Habits"
+          title="enter your Food Habits number if any.">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-xs-4">
+        <label for="kuladeivamPlace">
+          <h4>Kuladeivam & Place</h4>
+        </label>
+        <input type="text" class="form-control" name="KuladeivamPlace" id="KuladeivamPlace"
+          placeholder="enter Kuladeivam & Place" title="enter your Kuladeivam & Place if any.">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-xs-4">
+        <label for="kootam">
+          <h4>Kootam</h4>
+        </label>
+        <input type="text" class="form-control" name="kootam" id="kootam" placeholder="enter Kootam"
+          title="enter your Kootam if any.">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-xs-4">
+        <label for="education">
+          <h4>Education</h4>
+        </label>
+        <input type="text" class="form-control" name="education" id="education" placeholder="enter education"
+          title="enter your education if any.">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-xs-4">
+        <label for="occupation">
+          <h4>Occupation</h4>
+        </label>
+        <input type="text" class="form-control" name="occupation" id="occupation" placeholder="enter occupation"
+          title="enter your occupation if any.">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-xs-4">
+        <label for="currentCity">
+          <h4>City</h4>
+        </label>
+        <input type="text" class="form-control" name="currentCity" id="currentCity" placeholder="enter Current City"
+          title="enter your Current City if any.">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-xs-4">
+        <label for="maritalStatus">
+          <h4>Marital Status</h4>
+        </label>
+        <input type="text" class="form-control" name="maritalStatus" id="maritalStatus"
+          placeholder="enter Marital Status" title="enter your Marital Status if any.">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-xs-4">
+        <label for="noOfChildren">
+          <h4>No Of Children</h4>
+        </label>
+        <input type="text" class="form-control" name="noOfChildren" id="noOfChildren" placeholder="enter No Of Children"
+          title="enter your No Of Children if any.">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-xs-4">
+        <label for="familyType">
+          <h4>Family Type</h4>
+        </label>
+        <input type="text" class="form-control" name="familyType" id="familyType" placeholder="enter Family Type"
+          title="enter your Family Type if any.">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-xs-4">
+        <label for="familyStatus">
+          <h4>Family Status</h4>
+        </label>
+        <input type="text" class="form-control" name="familyStatus" id="familyStatus" placeholder="enter Family Status"
+          title="enter your Family Status if any.">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-xs-4">
+        <label for="familyValues">
+          <h4>Family Values</h4>
+        </label>
+        <input type="text" class="form-control" name="familyValues" id="familyValues" placeholder="enter Family Values"
+          title="enter your Family Values if any.">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-xs-4">
+        <label for="physicalStatus">
+          <h4>Physical Status</h4>
+        </label>
+        <input type="text" class="form-control" name="physicalStatus" id="physicalStatus"
+          placeholder="enter Physical Status" title="enter your Physical Status if any.">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-xs-4">
+        <label for="annualIncome">
+          <h4>Annual Income</h4>
+        </label>
+        <input type="text" class="form-control" name="annualIncome" id="annualIncome" placeholder="enter Annual Income"
+          title="enter your Annual Income if any.">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-xs-4">
+        <label for="prefferedLocation">
+          <h4>Preffered Location</h4>
+        </label>
+        <input type="text" class="form-control" name="prefferedLocation" id="prefferedLocation"
+          placeholder="enter Preffered Location" title="enter your Preffered Location if any.">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-xs-4">
+        <label for="noOfSiblings">
+          <h4>No Of Siblings</h4>
+        </label>
+        <input type="text" class="form-control" name="noOfSiblings" id="noOfSiblings" placeholder="enter No Of Siblings"
+          title="enter your No Of Siblings if any.">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-xs-4">
+        <label for="siblingsMaritalStatus">
+          <h4>Siblings Marital Status</h4>
+        </label>
+        <input type="text" class="form-control" name="siblingsMaritalStatus" id="siblingsMaritalStatus"
+          placeholder="enter Siblings Marital Status" title="enter your Siblings Marital Status if any.">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-xs-4">
+        <label for="fatherOccupation">
+          <h4>Father Occupation</h4>
+        </label>
+        <input type="text" class="form-control" name="fatherOccupation" id="fatherOccupation"
+          placeholder="enter Father Occupation" title="enter your Father Occupation if any.">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-xs-4">
+        <label for="fatherContactNo">
+          <h4>Father Contact No</h4>
+        </label>
+        <input type="text" class="form-control" name="fatherContactNo" id="fatherContactNo"
+          placeholder="enter Father Contact No" title="enter your Father Contact No if any.">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-xs-4">
+        <label for="imagePaths">
+          <h4>Image Paths</h4>
+        </label>
+        <input type="text" class="form-control" name="imagePaths" id="imagePaths" placeholder="enter Image Paths"
+          title="enter your Image Paths if any.">
+      </div>
+    </div>
+
+    <!-- <div class="form-group">
+      <div class="col-xs-4">
+        <label for="password">
+          <h4>Password</h4>
+        </label>
+        <input type="password" class="form-control" name="password" id="password" placeholder="password"
+          title="enter your password.">
+      </div>
+    </div>
+    <div class="form-group">
+
+      <div class="col-xs-4">
+        <label for="password2">
+          <h4>Verify</h4>
+        </label>
+        <input type="password" class="form-control" name="password2" id="password2" placeholder="password2"
+          title="enter your password2.">
+      </div>
+    </div> -->
+    <div class="form-group">
+      <div class="col-xs-12">
+        <br>
+        <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+        <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+      </div>
+    </div>
+  </form>
+</div>
