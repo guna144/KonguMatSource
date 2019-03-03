@@ -1,0 +1,172 @@
+<div class="lregister-form">
+  <div id="regForm">
+    <h5 class="modal-title text-uppercase">Register</h5>
+    <form [formGroup]="registerForm" (ngSubmit)="onRegister(registerForm.value)" class="px-3 pt-3 pb-0">
+      <div class="form-group">
+        <label for="firstName" class="col-form-label">First Name</label>
+        <input type="text" class="form-control" placeholder="" formControlName="firstName" required=""
+          [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+        <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+          <div *ngIf="f.firstName.errors.required">First Name is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="recipient-name" class="col-form-label">Last Name</label>
+        <input type="text" class="form-control" placeholder="" formControlName="lastName" id="recipient-name3"
+          required="" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+        <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+          <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="recipient-name" class="col-form-label">Email id</label>
+        <input type="email" class="form-control" placeholder="" formControlName="email" id="recipient-name4" required=""
+          [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+          <div *ngIf="f.email.errors.required">Email Id is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="recipient-name" class="col-form-label">Mobile Number</label>
+        <input type="text" class="form-control" placeholder="" formControlName="mobile" id="recipient-name5" required=""
+          [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }" />
+        <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+          <div *ngIf="f.mobile.errors.required">Mobile Number is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="recipient-name1" class="col-form-label">Password</label>
+        <input type="password" class="form-control" placeholder="" formControlName="password" id="recipient-name6"
+          required="" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+          <div *ngIf="f.password.errors.required">Password is required</div>
+          <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+        </div>
+      </div>
+      <div class="right-w3l">
+        <input type="submit" class="form-control" value="Get Started" />
+      </div>
+    </form>
+  </div>
+
+  <div id="agreeForm">
+    <form [formGroup]="agreeForm" (ngSubmit)="onRegister()" class="px-3 pt-3 pb-0">
+      <h5 class="modal-title text-uppercase">Terms and Conditions</h5>
+      <div class="right-w3l">
+        <div style="border: 1px solid #e5e5e5; width: 450px; height: 350px; overflow: auto; padding: 10px;">
+          <p>All information received by us from your registration on business-standard.com or other digital products
+            of Business Standard will be used by Business Standard in accordance with our Privacy Policy. Kindly
+            read the below mentioned details.</p>
+          <p>On registration, we expect you to provide Business Standard with an accurate and complete information of
+            the compulsory fields. We also expect you to keep the information secure, specifically access passwords
+            and payment information. Kindly update the information periodically to keep your account relevant.
+            Business Standard will rely on any information you provide to us.</p>
+          <p>Each registration is for a single user only. On registration, you will choose a user name and
+            password ("ID"). You are not allowed to share your ID or give access to your account to anyone else.
+            Business Standard Premium subscription does not allow multiple users on a network or within an organization
+            to use the same ID.</p>
+          <p>Eum ea quidam oportere imperdiet, facer oportere vituperatoribus eu vix, mea ei iisque legendos hendrerit.
+            Blandit comprehensam eu his, ad eros veniam ridens eum. Id odio lobortis elaboraret pro. Vix te fabulas
+            partiendo.</p>
+          <p>Natum oportere et qui, vis graeco tincidunt instructior an, autem elitr noster per et. Mea eu mundi
+            qualisque. Quo nemore nusquam vituperata et, mea ut abhorreant deseruisse, cu nostrud postulant dissentias
+            qui. Postea tincidunt vel eu.</p>
+          <p>Ad eos alia inermis nominavi, eum nibh docendi definitionem no. Ius eu stet mucius nonumes, no mea facilis
+            philosophia necessitatibus. Te eam vidit iisque legendos, vero meliore deserunt ius ea. An qui inimicus
+            inciderint.</p>
+          <hr>
+          <div class="form-group">
+            <div class="col-xs-6 col-xs-offset-3">
+              <div class="radio">
+                <label>
+                  <input type="radio" name="agreementFlag" (click)="agreeCall($event)" /> Agreed
+                  <!-- with the terms and conditions -->
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="agree" value="disagree" (click)="closeAgreePopup();" /> DisAgree
+                </label>
+              </div>
+            </div>
+          </div>
+
+        </div><br>
+        <a class="btn btn-info1 btn-lg-block w3ls-btn px-sm-4 px-3 text-capitalize mr-sm-2" id="next">Next</a>
+      </div>
+    </form>
+  </div>
+
+  <div id="paymentFrm">
+    <h5 class="modal-title text-uppercase">Payment</h5>
+    <div class="px-3 pt-3 pb-0">
+      <!-- <input type="submit" class="form-control" value="Complete" /> -->
+      <div class="form-group">
+        <label for="plan" class="col-form-label">Select a Plan</label>
+        <select class="form-control">
+          <option value="">Select a Plan</option>
+          <option value="silver">Silver</option>
+          <option value="gold">Gold</option>
+          <option value="platinum">Platinum</option>
+        </select>
+      </div>
+      <!-- <div class="col-xs-6 col-xs-offset-3"> -->
+      <div class="col-sm-8">
+        <label>
+          <input type="radio" name="paymentMode" (click)="onLine()" value="online" /> Online
+        </label>&nbsp;&nbsp;&nbsp;
+        <label>
+          <input type="radio" name="paymentMode" (click)="offLine()" value="offline" />
+          Offline
+        </label>
+      </div>
+      <div class="form-group">
+
+      </div>
+      <!-- </div> -->
+      <div id="offlineForm">
+        <form [formGroup]="paymentForm" (ngSubmit)="paymentSubmit(paymentForm.value)">
+          <div class="form-group">
+            <label for="chequeNumber" class="col-form-label">Cheque number</label>
+            <input type="text" class="form-control" placeholder="" formControlName="chequeNumber" required=""
+              [ngClass]="{ 'is-invalid': submitted && f.chequeNumber }" />
+            <div *ngIf="submitted && f.chequeNumber" class="invalid-feedback">
+              <div *ngIf="f.chequeNumber.required">Cheque Number is required</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="bankName" class="col-form-label">Bank Name</label>
+            <input type="text" class="form-control" placeholder="" formControlName="bankName" id="bankName" required=""
+              [ngClass]="{ 'is-invalid': submitted && f.bankName}" />
+            <div *ngIf="submitted && f.bankName" class="invalid-feedback">
+              <div *ngIf="f.bankName.required">Bank Name is required</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="branchName" class="col-form-label">Branch Name</label>
+            <input type="text" class="form-control" placeholder="" formControlName="branchName" id="branchName"
+              required="" [ngClass]="{ 'is-invalid': submitted && f.branchName }" />
+            <div *ngIf="submitted && f.branchName" class="invalid-feedback">
+              <div *ngIf="f.branchName.required">Branch Name is required</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="amount" class="col-form-label">Amount</label>
+            <input type="text" class="form-control" placeholder="" formControlName="amount" id="amount" required=""
+              [ngClass]="{ 'is-invalid': submitted && f.amount }" />
+            <div *ngIf="submitted && f.amount" class="invalid-feedback">
+              <div *ngIf="f.amount.required">Amount is required</div>
+            </div>
+          </div>
+
+          <div class="right-w3l">
+            <input type="submit" class="form-control" value="Finish" />
+          </div>
+        </form>
+      </div>
+      <!-- <a class="btn btn-info1 btn-lg-block w3ls-btn px-sm-4 px-3 text-capitalize mr-sm-2" href="home#"
+        id="finish">Finish</a> -->
+    </div>
+  </div>
+</div>
+<a class="close" (click)="close()" id="closeBtn" href="home#">&times;</a>

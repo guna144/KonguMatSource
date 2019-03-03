@@ -1,0 +1,36 @@
+<!-- top header -->
+<section class="row top_header pt-3">
+  <div class="col-lg-6 buttons ml-auto">
+    <p><span class="fa fa-phone"></span> +91-424-2270227</p>
+    <p *ngIf="currentUser"> Welcome</p>
+    <a *ngIf="!currentUser" class="btn btn-info btn-lg-block w3ls-btn px-sm-4 px-3 text-capitalize mr-sm-2"
+      href="/home#login-popup">Login</a>
+    <a *ngIf="!currentUser" class="btn btn-info1 btn-lg-block w3ls-btn1 px-sm-4 px-3 text-capitalize"
+      href="/home#register-popup">Register</a>
+  </div>
+
+  <!-- logout menu -->
+  <div *ngIf="currentUser" class="dropdown">
+    <a class="account"><b>{{currentUser.firstname}}</b></a>
+    <div class="submenu">
+      <ul class="root">
+        <li><a href="#Dashboard">Dashboard</a></li>
+        <li><a href="#Profile">Profile</a></li>
+        <li><a href="#settings">Settings</a></li>
+        <li><a href="#feedback">Send Feedback</a></li>
+        <li><a href="/" (click)="logout()">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+  <!-- logout menu -->
+</section>
+<!-- top header -->
+
+<div *ngIf="currentUser" id="logo">
+  <h1>
+    <a class="navbar-brand" href="index.html">
+      <span class="fa fa-empire"></span>Kongu Manamedai
+      <!-- <span><span class="line"></span>Organizer</span> -->
+    </a>
+  </h1>
+</div>
