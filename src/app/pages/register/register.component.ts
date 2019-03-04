@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { KonguService } from '../../../app/_services/kongu.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AlertService } from '../../../app/_services/alert.service';
 import * as $ from 'jquery';
 
 @Component({
@@ -16,20 +17,18 @@ export class RegisterComponent implements OnInit {
   paymentForm: FormGroup;
   loading = false;
   submitted = false;
+  jsonObject: any = {};
+  emailUsed: Boolean = false;
+  mobileUsed: Boolean = false;
   constructor(
     private _service: KonguService,
     private _activateRoute: ActivatedRoute,
     private _router: Router,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private alertService: AlertService
   ) { }
 
-  singUp(formValue: string) {
-  }
-
-  // onAboutButton(): void {
-  //   this._router.navigate(['/about']);
-  // }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -38,7 +37,7 @@ export class RegisterComponent implements OnInit {
       email: ['', Validators.required],
       mobile: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      flag: true,
+      accFlag: true,
       role: 'admin'
     });
 
@@ -47,6 +46,9 @@ export class RegisterComponent implements OnInit {
     });
 
     this.paymentForm = this.formBuilder.group({
+      agreementFlag: ['', Validators.required],
+      modeOfPayment: ['', Validators.required],
+      membership: ['', Validators.required],
       chequeNumber: ['', Validators.required],
       bankName: ['', Validators.required],
       branchName: ['', Validators.required],
@@ -76,7 +78,12 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.controls;
   }
 
-  onRegister() {
+  // convenience getter for easy access to form fields
+  get p() {
+    return this.paymentForm.controls;
+  }
+
+  onRegister(formValue) {
     this.submitted = true;
     // console.log(this.registerForm.value);
     // stop here if form is invalid
@@ -87,22 +94,34 @@ export class RegisterComponent implements OnInit {
     $('#next').hide();
     $('#regForm').hide();
     this.close();
+    this.jsonObject = JSON.stringify(formValue);
+    console.log(this.jsonObject);
+  }
+
+  paymentSubmit(paymentFormValue) {
 
 
-    this.loading = true;
-    // this._service.register(this.registerForm.value).subscribe(
-    //   data => {
-    //     console.log('Registration successful');
-    //     // this.alertService.success('Registration successful', true);
-    //     // this.router.navigate(['/login']);
-    //     $('#agreeForm').show();
-    //     $('#regForm').hide();
-    //   },
-    //   error => {
-    //     // this.alertService.error(error);
-    //     this.loading = false;
-    //   }
-    // );
+    const paymentJSON = JSON.stringify(paymentFormValue);
+
+    const regJSON = [];
+    regJSON.push(JSON.parse(this.jsonObject));
+    regJSON.push(JSON.parse(paymentJSON));
+
+    this._service.register(JSON.stringify(regJSON)).subscribe(
+      data => {
+        console.log('Registration successful');
+        localStorage.setItem('currentUser', JSON.stringify(data));
+        this.router.navigate(['/profile']);
+        $('#regForm').hide();
+        $('#agreeForm').hide();
+        $('#paymentFrm').hide();
+        $('#register-popup').hide();
+      },
+      error => {
+        // this.alertService.error(error);
+        this.loading = false;
+      }
+    );
   }
 
   close() {
@@ -124,7 +143,9 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  agreeCall() {
+  agreeCall(event) {
+    console.log(event.target.checked);
+    // console.log(this.jsonObject);
     $('#next').show();
   }
 
@@ -135,4 +156,35 @@ export class RegisterComponent implements OnInit {
   offLine() {
     $('#offlineForm').show();
   }
+
+  emailCheck(e) {
+    const emailId = e.target.value;
+    this._service.emailCheckService(emailId).subscribe(
+      data => {
+        console.log('Email id already exisit!');
+        this.emailUsed = true;
+      },
+      error => {
+        this.emailUsed = false;
+      }
+    );
+  }
+
+  mobileCheck(e) {
+    const mobile = e.target.value;
+    this._service.mobileCheckService(mobile).subscribe(
+      data => {
+
+        const check = data;
+        if (check) {
+          console.log('Mobile number already exisit!');
+          this.mobileUsed = true;
+        } else {
+          this.mobileUsed = false;
+        }
+      },
+      error => { }
+    );
+  }
+
 }

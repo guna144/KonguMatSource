@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -15,22 +15,18 @@ import { RegisterComponent } from './pages/register/register.component';
 import { AlertComponent } from './_directives/alert/alert.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { HeaderComponent } from './pages/header/header.component';
+import { AuthGuard } from './_guards/auth.guard.service';
+import { ErrorInterceptor } from './_helpers/error.interceptor';
+import { JwtInterceptor } from './_helpers/jwt.interceptor';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
+  { path: 'home#login-popup', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'services', component: ServicesComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'contact', component: ContactComponent },
-  // {
-  //   path: '',
-  //   redirectTo: 'home',
-  //   pathMatch: 'full'
-  // },
-  {
-    path: '**',
-    redirectTo: 'home'
-  }
+  { path: '**', redirectTo: '/home' }
 ];
 @NgModule({
   declarations: [
@@ -53,7 +49,10 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

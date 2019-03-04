@@ -1,7 +1,8 @@
 <div class="lregister-form">
   <div id="regForm">
     <h5 class="modal-title text-uppercase">Register</h5>
-    <form [formGroup]="registerForm" (ngSubmit)="onRegister()" class="px-3 pt-3 pb-0">
+    <form [formGroup]="registerForm" (ngSubmit)="onRegister(registerForm.value)" class="px-3 pt-3 pb-0">
+
       <div class="form-group">
         <label for="firstName" class="col-form-label">First Name</label>
         <input type="text" class="form-control" placeholder="" formControlName="firstName" required=""
@@ -20,16 +21,18 @@
       </div>
       <div class="form-group">
         <label for="recipient-name" class="col-form-label">Email id</label>
-        <input type="email" class="form-control" placeholder="" formControlName="email" id="recipient-name4" required=""
-          [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+        <div *ngIf="emailUsed" class="alert alert-danger" role="alert">Email id already used</div>
+        <input type="email" class="form-control" placeholder="" formControlName="email" (blur)="emailCheck($event)"
+          id="recipient-name4" required="" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
         <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
           <div *ngIf="f.email.errors.required">Email Id is required</div>
         </div>
       </div>
       <div class="form-group">
         <label for="recipient-name" class="col-form-label">Mobile Number</label>
-        <input type="text" class="form-control" placeholder="" formControlName="mobile" id="recipient-name5" required=""
-          [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }" />
+        <div *ngIf="mobileUsed" class="alert alert-danger" role="alert">Mobile number already used</div>
+        <input type="text" class="form-control" placeholder="" formControlName="mobile" id="recipient-name5"
+          (blur)="mobileCheck($event)" required="" [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }" />
         <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
           <div *ngIf="f.mobile.errors.required">Mobile Number is required</div>
         </div>
@@ -43,6 +46,7 @@
           <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
         </div>
       </div>
+
       <div class="right-w3l">
         <input type="submit" class="form-control" value="Get Started" />
       </div>
@@ -74,24 +78,24 @@
           <p>Ad eos alia inermis nominavi, eum nibh docendi definitionem no. Ius eu stet mucius nonumes, no mea facilis
             philosophia necessitatibus. Te eam vidit iisque legendos, vero meliore deserunt ius ea. An qui inimicus
             inciderint.</p>
-        </div><br>
-        <!-- <input type="submit" class="form-control" value="Next" /> -->
-        <div class="form-group">
-          <div class="col-xs-6 col-xs-offset-3">
-            <div class="radio">
-              <label>
-                <input type="radio" name="agree" value="agree" (click)="agreeCall()" /> Agree
-                with the terms and
-                conditions
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="agree" value="disagree" (click)="closeAgreePopup();" /> DisAgree
-              </label>
+          <hr>
+          <div class="form-group">
+            <div class="col-xs-6 col-xs-offset-3">
+              <div class="radio">
+                <label>
+                  <input type="radio" name="agreementFlag" (click)="agreeCall($event)" /> Agreed
+                  <!-- with the terms and conditions -->
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="agree" value="disagree" (click)="closeAgreePopup();" /> DisAgree
+                </label>
+              </div>
             </div>
           </div>
-        </div>
+
+        </div><br>
         <a class="btn btn-info1 btn-lg-block w3ls-btn px-sm-4 px-3 text-capitalize mr-sm-2" id="next">Next</a>
       </div>
     </form>
@@ -100,72 +104,75 @@
   <div id="paymentFrm">
     <h5 class="modal-title text-uppercase">Payment</h5>
     <div class="px-3 pt-3 pb-0">
-      <!-- <input type="submit" class="form-control" value="Complete" /> -->
-      <div class="form-group">
-        <label for="plan" class="col-form-label">Select a Plan</label>
-        <select class="form-control">
-          <option value="">Select a Plan</option>
-          <option value="silver">Silver</option>
-          <option value="gold">Gold</option>
-          <option value="platinum">Platinum</option>
-        </select>
-      </div>
-      <!-- <div class="col-xs-6 col-xs-offset-3"> -->
-      <div class="col-sm-8">
-        <label>
-          <input type="radio" name="paymentMode" (click)="onLine()" value="online" /> Online
-        </label>&nbsp;&nbsp;&nbsp;
-        <label>
-          <input type="radio" name="paymentMode" (click)="offLine()" value="offline" />
-          Offline
-        </label>
-      </div>
-      <div class="form-group">
+      <form [formGroup]="paymentForm" (ngSubmit)="paymentSubmit(paymentForm.value)">
+        <!-- <input type="submit" class="form-control" value="Complete" /> -->
+        <input type="hidden" name="agreementFlag" formControlName="agreementFlag" />
+        <div class="form-group">
+          <label for="plan" class="col-form-label">Select a Plan</label>
+          <select class="form-control" name="membership" formControlName="membership">
+            <option value="">Select a Membership</option>
+            <option value="silver">Silver</option>
+            <option value="gold">Gold</option>
+            <option value="platinum">Platinum</option>
+          </select>
+        </div>
+        <!-- <div class="col-xs-6 col-xs-offset-3"> -->
+        <div class="col-sm-8">
+          <label>
+            <input type="radio" name="modeOfPayment" formControlName="modeOfPayment" (click)="onLine()"
+              value="online" /> Online
+          </label>&nbsp;&nbsp;&nbsp;
+          <label>
+            <input type="radio" name="modeOfPayment" formControlName="modeOfPayment" (click)="offLine()"
+              value="offline" />
+            Offline
+          </label>
+        </div>
+        <div class="form-group">
 
-      </div>
-      <!-- </div> -->
-      <div id="offlineForm">
-        <form [formGroup]="paymentForm">
+        </div>
+        <!-- </div> -->
+        <div id="offlineForm">
           <div class="form-group">
             <label for="chequeNumber" class="col-form-label">Cheque number</label>
             <input type="text" class="form-control" placeholder="" formControlName="chequeNumber" required=""
-              [ngClass]="{ 'is-invalid': submitted && f.chequeNumber }" />
-            <div *ngIf="submitted && f.chequeNumber" class="invalid-feedback">
-              <div *ngIf="f.chequeNumber.required">Cheque Number is required</div>
+              [ngClass]="{ 'is-invalid': submitted && p.chequeNumber.errors }" />
+            <div *ngIf="submitted && p.chequeNumber.errors" class="invalid-feedback">
+              <div *ngIf="p.chequeNumber.errors.required">Cheque Number is required</div>
             </div>
           </div>
           <div class="form-group">
             <label for="bankName" class="col-form-label">Bank Name</label>
             <input type="text" class="form-control" placeholder="" formControlName="bankName" id="bankName" required=""
-              [ngClass]="{ 'is-invalid': submitted && f.bankName}" />
-            <div *ngIf="submitted && f.bankName" class="invalid-feedback">
-              <div *ngIf="f.bankName.required">Bank Name is required</div>
+              [ngClass]="{ 'is-invalid': submitted && p.bankName.errors}" />
+            <div *ngIf="submitted && p.bankName.errors" class="invalid-feedback">
+              <div *ngIf="p.bankName.errors.required">Bank Name is required</div>
             </div>
           </div>
           <div class="form-group">
             <label for="branchName" class="col-form-label">Branch Name</label>
             <input type="text" class="form-control" placeholder="" formControlName="branchName" id="branchName"
-              required="" [ngClass]="{ 'is-invalid': submitted && f.branchName }" />
-            <div *ngIf="submitted && f.branchName" class="invalid-feedback">
-              <div *ngIf="f.branchName.required">Branch Name is required</div>
+              required="" [ngClass]="{ 'is-invalid': submitted && p.branchName.errors }" />
+            <div *ngIf="submitted && p.branchName.errors" class="invalid-feedback">
+              <div *ngIf="p.branchName.errors.required">Branch Name is required</div>
             </div>
           </div>
           <div class="form-group">
             <label for="amount" class="col-form-label">Amount</label>
             <input type="text" class="form-control" placeholder="" formControlName="amount" id="amount" required=""
-              [ngClass]="{ 'is-invalid': submitted && f.amount }" />
-            <div *ngIf="submitted && f.amount" class="invalid-feedback">
-              <div *ngIf="f.amount.required">Amount is required</div>
+              [ngClass]="{ 'is-invalid': submitted && p.amount.errors }" />
+            <div *ngIf="submitted && p.amount.errors" class="invalid-feedback">
+              <div *ngIf="p.amount.errors.required">Amount is required</div>
             </div>
           </div>
 
           <div class="right-w3l">
             <input type="submit" class="form-control" value="Finish" />
           </div>
-        </form>
-      </div>
-      <!-- <a class="btn btn-info1 btn-lg-block w3ls-btn px-sm-4 px-3 text-capitalize mr-sm-2" href="home#"
+        </div>
+        <!-- <a class="btn btn-info1 btn-lg-block w3ls-btn px-sm-4 px-3 text-capitalize mr-sm-2" href="home#"
         id="finish">Finish</a> -->
+      </form>
     </div>
   </div>
 </div>

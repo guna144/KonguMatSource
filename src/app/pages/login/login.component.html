@@ -1,15 +1,28 @@
+<div *ngIf="message" style="color:red;"
+  [ngClass]="{ 'alert': message, 'alert-success': message.type === 'success', 'alert-danger': message.type === 'error' }">
+  {{message}}</div>
 <div id="loginFrm">
   <h5 class="modal-title text-uppercase">Login</h5>
-  <form action="#" [formGroup]="loginForm" class="px-3 pt-3 pb-0">
+  <!-- <div class="form-group">
+    <img *ngIf="loading" style="width:5%;height:5%;text-align: center;"
+      src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+  </div> -->
+  <form action="#" [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="px-3 pt-3 pb-0">
     <div class="form-group">
-      <label for="recipient-name" class="col-form-label">Mobile / Email</label>
+      <label for="emailMobile" class="col-form-label">Mobile / Email</label>
       <input type="text" class="form-control" placeholder="" formControlName="emailMobile" id="recipient-name"
-        required="" />
+        [ngClass]="{ 'is-invalid': submitted && f.emailMobile.errors }" />
+      <div *ngIf="submitted && f.emailMobile.errors" class="invalid-feedback">
+        <div *ngIf="f.emailMobile.errors.required">Email / Mobile is required</div>
+      </div>
     </div>
     <div class="form-group">
       <label for="recipient-name1" class="col-form-label">Password</label>
       <input type="password" class="form-control" placeholder="" formControlName="password" id="recipient-name1"
-        required="" />
+        [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+        <div *ngIf="f.password.errors.required">Password is required</div>
+      </div>
     </div>
     <!-- <div class="right-w3l">
           <input type="submit" class="form-control" value="Login" />
@@ -18,8 +31,9 @@
         </div> -->
     <div class="col-lg-12  ml-auto">
       <!--buttons-->
-      <a class="btn btn-info1 btn-lg-block w3ls-btn px-sm-4 px-3 text-capitalize mr-sm-2" href="home#"
-        (click)="onLogin()">Login</a>
+      <button class="btn btn-info1 btn-lg-block w3ls-btn px-sm-4 px-3 text-capitalize mr-sm-2">Login</button>
+      <!-- <a class="btn btn-info1 btn-lg-block w3ls-btn px-sm-4 px-3 text-capitalize mr-sm-2" href="home#" -->
+      <!-- (click)="onLogin()">Login</a> -->
       <a class="btn btn-info1 btn-lg-block w3ls-btn1 px-sm-4 px-3 text-capitalize" id="forgot">Forgot
         Password</a>
     </div>

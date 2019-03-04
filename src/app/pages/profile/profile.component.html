@@ -6,22 +6,28 @@
     <!-- top header -->
   </div>
 </header>
-<br>
-<br>
-<br>
-<br><br>
-<br>
+
+<!-- inner banner -->
+<div class="inner_banner layer" id="home">
+  <div class="container">
+    <div class="agileinfo-inner">
+      <h2 class="text-center text-white">
+        My Profile
+      </h2>
+    </div>
+  </div>
+</div>
+<!-- //inner banner -->
+
 <div class="container" id="settings">
-  <h2>My Profile</h2>
   <hr>
   <form class="form" action="##" method="post" id="registrationForm" (ngSubmit)="profileUpdate()">
     <div class="form-group">
       <div class="col-xs-4">
         <label for="first_name">
           <h4>First name</h4>
-        </label>
-        <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name"
-          title="enter your first name if any.">
+        </label><br>
+        <label>{{currentUser.firstname}}</label>
       </div>
     </div>
     <div class="form-group">
@@ -29,8 +35,8 @@
         <label for="last_name">
           <h4>Last name</h4>
         </label>
-        <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name"
-          title="enter your last name if any.">
+        <br>
+        <label>{{currentUser.lastname}}</label>
       </div>
     </div>
 
@@ -39,8 +45,8 @@
         <label for="mobile">
           <h4>Mobile</h4>
         </label>
-        <input type="text" class="form-control" name="mobile" id="mobile" placeholder="enter mobile number"
-          title="enter your mobile number if any.">
+        <br>
+        <label>{{currentUser.mobile}}</label>
       </div>
     </div>
     <div class="form-group">
@@ -48,8 +54,8 @@
         <label for="email">
           <h4>Email</h4>
         </label>
-        <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com"
-          title="enter your email.">
+        <br>
+        <label>{{currentUser.email}}</label>
       </div>
     </div>
     <div class="form-group">
@@ -301,10 +307,16 @@
       </div>
     </div> -->
     <div class="form-group">
-      <div class="col-xs-12">
+      <div class="col-lg-12  ml-auto">
         <br>
-        <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-        <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+        <button class="btn btn-info1 btn-lg-block w3ls-btn px-sm-4 px-3 text-capitalize mr-sm-2" type="submit"><i
+            class="glyphicon glyphicon-ok-sign"></i>
+          <p style="color:#feed01;">Save</p>
+        </button>
+        <button class="btn btn-info1 btn-lg-block w3ls-btn px-sm-4 px-3 text-capitalize mr-sm-2" type="reset"><i
+            class="glyphicon glyphicon-repeat"></i>
+          <p style="color:#feed01;">Reset</p>
+        </button>
       </div>
     </div>
   </form>

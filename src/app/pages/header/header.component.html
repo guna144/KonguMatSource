@@ -1,8 +1,8 @@
 <!-- top header -->
 <section class="row top_header pt-3">
   <div class="col-lg-6 buttons ml-auto">
-    <p style="color:#004b1a"><span style="color:#004b1a" class="fa fa-phone"></span> +91-424-2270227</p>
-    <p *ngIf="currentUser" style="color:#004b1a"> Welcome</p>
+    <p><span class="fa fa-phone"></span> +91-424-2270227</p>
+    <p *ngIf="currentUser"> Welcome</p>
     <a *ngIf="!currentUser" class="btn btn-info btn-lg-block w3ls-btn px-sm-4 px-3 text-capitalize mr-sm-2"
       href="/home#login-popup">Login</a>
     <a *ngIf="!currentUser" class="btn btn-info1 btn-lg-block w3ls-btn1 px-sm-4 px-3 text-capitalize"
@@ -28,7 +28,7 @@
 
 <div *ngIf="currentUser" id="logo">
   <h1>
-    <a style="color:#004b1a" class="navbar-brand" href="index.html">
+    <a class="navbar-brand" href="index.html">
       <span class="fa fa-empire"></span>Kongu Manamedai
       <!-- <span><span class="line"></span>Organizer</span> -->
     </a>
