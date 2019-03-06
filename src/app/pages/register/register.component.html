@@ -1,27 +1,38 @@
 <div class="lregister-form">
   <div id="regForm">
     <h5 class="modal-title text-uppercase">Register</h5>
-    <form [formGroup]="registerForm" (ngSubmit)="onRegister(registerForm.value)" class="px-3 pt-3 pb-0">
+    <form [formGroup]="registerForm" (ngSubmit)="onRegister(registerForm.value)" class="form-horizontal">
 
       <div class="form-group">
-        <label for="firstName" class="col-form-label">First Name</label>
-        <input type="text" class="form-control" placeholder="" formControlName="firstName" required=""
-          [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
-        <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-          <div *ngIf="f.firstName.errors.required">First Name is required</div>
+        <label for="firstname" class="control-label">First Name</label>
+        <input type="text" class="form-control" placeholder="" formControlName="firstname" required=""
+          [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }" />
+        <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+          <div *ngIf="f.firstname.errors.required">First Name is required</div>
         </div>
       </div>
+
       <div class="form-group">
-        <label for="recipient-name" class="col-form-label">Last Name</label>
-        <input type="text" class="form-control" placeholder="" formControlName="lastName" id="recipient-name3"
-          required="" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
-        <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-          <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+        <label for="lastname" class="control-label">Last Name</label>
+        <input type="text" class="form-control" placeholder="" formControlName="lastname" id="recipient-name3"
+          required="" [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }" />
+        <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
+          <div *ngIf="f.lastname.errors.required">Last Name is required</div>
         </div>
       </div>
+
       <div class="form-group">
-        <label for="recipient-name" class="col-form-label">Email id</label>
-        <div *ngIf="emailUsed" class="alert alert-danger" role="alert">Email id already used</div>
+        <label for="lastname" class="control-label">Gender</label>&nbsp;&nbsp;
+        <label>
+          <input type="radio" name="gender" formControlName="gender" value="male" /> Male
+        </label> &nbsp;&nbsp;&nbsp;
+        <label>
+          <input type="radio" name="gender" formControlName="gender" value="female" /> Female
+        </label>
+      </div>
+      <div class="form-group">
+        <label for="email" class="control-label">Email id</label>
+        <div *ngIf="emailUsed" class="alert alert-danger" role="alert"><b>{{emailUsed}}</b> Email id already used</div>
         <input type="email" class="form-control" placeholder="" formControlName="email" (blur)="emailCheck($event)"
           id="recipient-name4" required="" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
         <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
@@ -29,8 +40,9 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="recipient-name" class="col-form-label">Mobile Number</label>
-        <div *ngIf="mobileUsed" class="alert alert-danger" role="alert">Mobile number already used</div>
+        <label for="mobile" class="control-label">Mobile Number</label>
+        <div *ngIf="mobileUsed" class="alert alert-danger" role="alert"><b>{{mobileUsed}}</b> Mobile number already used
+        </div>
         <input type="text" class="form-control" placeholder="" formControlName="mobile" id="recipient-name5"
           (blur)="mobileCheck($event)" required="" [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }" />
         <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
@@ -38,7 +50,7 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="recipient-name1" class="col-form-label">Password</label>
+        <label for="password" class="control-label">Password</label>
         <input type="password" class="form-control" placeholder="" formControlName="password" id="recipient-name6"
           required="" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
         <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
@@ -96,7 +108,7 @@
           </div>
 
         </div><br>
-        <a class="btn btn-info1 btn-lg-block w3ls-btn px-sm-4 px-3 text-capitalize mr-sm-2" id="next">Next</a>
+        <a class="btn btn-info1 btn-md-block w3ls-btn px-sm-4 px-3 text-capitalize mr-sm-2" id="next">Next</a>
       </div>
     </form>
   </div>
@@ -170,7 +182,7 @@
             <input type="submit" class="form-control" value="Finish" />
           </div>
         </div>
-        <!-- <a class="btn btn-info1 btn-lg-block w3ls-btn px-sm-4 px-3 text-capitalize mr-sm-2" href="home#"
+        <!-- <a class="btn btn-info1 btn-md-block w3ls-btn px-sm-4 px-3 text-capitalize mr-sm-2" href="home#"
         id="finish">Finish</a> -->
       </form>
     </div>

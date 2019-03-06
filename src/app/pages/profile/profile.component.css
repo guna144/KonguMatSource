@@ -1,1 +1,11 @@
 @import '../../../../node_modules/bootstrap/dist/css/bootstrap.css';
+.avatar {
+    vertical-align: middle;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+  }
+  .header-color {
+    background-color: #004b1a;
+    color:#feed01;
+  }

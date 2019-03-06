@@ -18,8 +18,10 @@ export class RegisterComponent implements OnInit {
   loading = false;
   submitted = false;
   jsonObject: any = {};
-  emailUsed: Boolean = false;
-  mobileUsed: Boolean = false;
+  emailUsed: string;
+  mobileUsed: string;
+
+
   constructor(
     private _service: KonguService,
     private _activateRoute: ActivatedRoute,
@@ -32,8 +34,9 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
+      gender: ['', Validators.required],
       email: ['', Validators.required],
       mobile: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -126,8 +129,8 @@ export class RegisterComponent implements OnInit {
 
   close() {
     this.registerForm = this.formBuilder.group({
-      firstName: '',
-      lastName: '',
+      firstname: '',
+      lastname: '',
       email: '',
       mobile: '',
       password: ''
@@ -161,11 +164,18 @@ export class RegisterComponent implements OnInit {
     const emailId = e.target.value;
     this._service.emailCheckService(emailId).subscribe(
       data => {
-        console.log('Email id already exisit!');
-        this.emailUsed = true;
+        const check = data;
+        if (check) {
+          console.log('Email id already exisit!');
+          this.emailUsed = e.target.value;
+          e.target.value = '';
+          e.target.focus();
+        } else {
+          this.emailUsed = '';
+        }
       },
       error => {
-        this.emailUsed = false;
+        console.log('email chekc error : ', error);
       }
     );
   }
@@ -178,12 +188,16 @@ export class RegisterComponent implements OnInit {
         const check = data;
         if (check) {
           console.log('Mobile number already exisit!');
-          this.mobileUsed = true;
+          this.mobileUsed = e.target.value;
+          e.target.value = '';
+          e.target.focus();
         } else {
-          this.mobileUsed = false;
+          this.mobileUsed = '';
         }
       },
-      error => { }
+      error => {
+        console.log('mobile check error : ', error);
+      }
     );
   }
 
