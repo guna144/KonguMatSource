@@ -31,4 +31,12 @@ export class KonguService {
   profileUpdate(profileJSON: any) {
     return this._http.post(this.serviceURL + `/saveProfile`, profileJSON);
   }
+
+  imageSave(profileId: string) {
+    profileId = '5c8ce8270ccfe6adf3a4902a';
+    return this._http.post('https://kmat.herokuapp.com/saveFile/', profileId);
+  }
+
+
+
 }

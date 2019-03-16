@@ -19,6 +19,7 @@ import { AuthGuard } from './_guards/auth.guard.service';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { FooterComponent } from './pages/footer/footer.component';
+import { MenuComponent } from './pages/menu/menu.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -42,7 +43,8 @@ const appRoutes: Routes = [
     AlertComponent,
     ProfileComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    MenuComponent
   ],
   imports: [
     ReactiveFormsModule,

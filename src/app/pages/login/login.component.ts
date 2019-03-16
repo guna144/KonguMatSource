@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-
+    console.log('user data : ' + this.f.emailMobile.value + ' : ' + this.f.password.value);
     this.loading = true;
     this.authenticationService.login(this.f.emailMobile.value, this.f.password.value)
       .pipe(first())

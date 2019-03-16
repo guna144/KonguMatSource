@@ -3,9 +3,79 @@
     vertical-align: middle;
     width: 250px;
     height: 250px;
-    border-radius: 50%;
+    /* border-radius: 50%; */
   }
   .header-color {
     background-color: #004b1a;
     color:#feed01;
+    border-color: #004b1a;
+  }
+
+  .panel-default {
+    border-color: #004b1a;
+    background-color: #004b1a;
+    color:#feed01;
+    border-bottom: 2px;
+
+  }
+
+  .panel-custom-red {
+    border-color: #004b1a;
+  }
+  
+  .panel-custom-red > .panel-heading {
+    background-color: #004b1a;
+    color: #feed01;
+    border-color: #004b1a;
+  }
+
+  .carousel-control {
+    color:black;
+  }
+  
+  .carousel-indicators {
+    border: blue;
+  }
+  /** Carousel profile photos navigator */
+  .carousel{
+    background: #ebe8e8;
+    margin-top: 20px;
+  }
+  .carousel .item{
+      min-height: 280px; /* Prevent carousel from being distorted if for some reason image doesn't load */
+  }
+  .carousel .item img{
+      margin: 0 auto; /* Align slide image horizontally center */
+  }
+  .bs-example{
+    margin: 20px;
+  }
+
+  .carousel-control.left, .carousel-control.right {
+    background-image: none
+}
+
+/* Impage upload browse button */
+  .btn-file {
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-file input[type=file] {
+      position: absolute;
+      top: 0;
+      right: 0;
+      min-width: 100%;
+      min-height: 100%;
+      font-size: 100px;
+      text-align: right;
+      filter: alpha(opacity=0);
+      opacity: 0;
+      outline: none;
+      background: white;
+      cursor: inherit;
+      display: block;
+  }
+
+  #img-upload{
+      width: 90%;
   }

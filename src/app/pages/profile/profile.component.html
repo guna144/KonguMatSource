@@ -22,7 +22,7 @@
 <div class="container" id="settings">
   <hr>
   <form class="form" [formGroup]="profileForm" id="profileForm" (ngSubmit)="profileUpdate(profileForm.value)">
-    <div class="panel">
+    <div class="panel panel-custom-red">
       <div class="panel-heading header-color">
         <h2 class="panel-title"><b>Personal Information</b></h2>
       </div>
@@ -52,7 +52,7 @@
               </label>
               <br>
               <label>{{currentUser.mobile}}</label>
-              <input type="hidden" value="{{currentUser.mobile}}" name="profileId" formControlName="profileId" />
+              <!-- <input type="hidden" value="{{currentUser.mobile}}" id="mobile" name="mobile" formControlName="mobile" /> -->
             </div>
           </div>
           <div class="form-group">
@@ -70,7 +70,7 @@
               <label for="gender">
                 <h4>Gender</h4>
               </label><br>
-              <label>{{currentUser.gender}}</label>
+              <label>{{currentUser.sex}}</label>
             </div>
           </div>
 
@@ -79,19 +79,27 @@
             <div class="col-xs-6">
               <label for="maritalStatus">
                 <h4>Marital Status</h4>
-              </label>
-              <input type="text" class="form-control" formControlName="maritalStatus" name="maritalStatus"
-                id="maritalStatus" placeholder="enter Marital Status" title="enter your Marital Status if any.">
+              </label><br>
+              <label *ngIf="currentUser.maritalStatus">{{currentUser.maritalStatus}}</label>
+              <select *ngIf="!currentUser.maritalStatus" class="form-control" name="maritalStatus"
+                (change)="onChangeMaritalStatus($event.target.value)" formControlName="maritalStatus">
+                <option value="">Select a Marital Status</option>
+                <option value="never married">Never Married</option>
+                <option value="widow">Widow</option>
+                <option value="divorcee">Divorcee</option>
+              </select>
             </div>
           </div>
 
-          <div class="form-group">
+          <div class="form-group" *ngIf="enableFlag">
             <div class="col-xs-6">
               <label for="noOfChildren">
                 <h4>No Of Children</h4>
-              </label>
-              <input type="text" class="form-control" formControlName="noOfChildren" name="noOfChildren"
-                id="noOfChildren" placeholder="enter No Of Children" title="enter your No Of Children if any.">
+              </label><br>
+              <label *ngIf="currentUser.noOfChildren">{{currentUser.noOfChildren}}</label>
+              <input *ngIf="!currentUser.noOfChildren" type="text" class="form-control" formControlName="noOfChildren"
+                name="noOfChildren" id="noOfChildren" placeholder="enter No Of Children"
+                title="enter your No Of Children if any.">
             </div>
           </div>
 
@@ -99,9 +107,10 @@
             <div class="col-xs-6">
               <label for="height">
                 <h4>Height</h4>
-              </label>
-              <input type="text" class="form-control" formControlName="height" name="height" id="height"
-                placeholder="enter height" title="enter your height number if any.">
+              </label><br>
+              <label *ngIf="currentUser.height">{{currentUser.height}}</label>
+              <input *ngIf="!currentUser.height" type="text" class="form-control" formControlName="height" name="height"
+                id="height" placeholder="enter height" title="enter your height number if any.">
             </div>
           </div>
 
@@ -109,9 +118,10 @@
             <div class="col-xs-6">
               <label for="weight">
                 <h4>Weight</h4>
-              </label>
-              <input type="text" class="form-control" formControlName="weight" name="weight" id="weight"
-                placeholder="enter weight" title="enter your weight number if any.">
+              </label><br>
+              <label *ngIf="currentUser.weight">{{currentUser.weight}}</label>
+              <input *ngIf="!currentUser.weight" type="text" class="form-control" formControlName="weight" name="weight"
+                id="weight" placeholder="enter weight" title="enter your weight number if any.">
             </div>
           </div>
 
@@ -119,60 +129,188 @@
             <div class="col-xs-6">
               <label for="bodytype">
                 <h4>Body Type</h4>
-              </label>
-              <input type="text" class="form-control" formControlName="bodyType" name="bodyType" id="bodyType"
-                placeholder="enter Body Type" title="enter your Body Type number if any.">
+              </label><br>
+              <label *ngIf="currentUser.bodyType">{{currentUser.bodyType}}</label>
+              <select *ngIf="!currentUser.bodyType" class="form-control" name="bodyType" formControlName="bodyType">
+                <option value="">Select a Body Type</option>
+                <option value="slim">Slim</option>
+                <option value="average">Average</option>
+                <option value="athletic">Athletic</option>
+                <option value="heavy">Heavy</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-xs-6">
+              <label for="placeOfBirth">
+                <h4>Place Of Birth</h4>
+              </label><br>
+              <label *ngIf="currentUser.placeOfBirth">{{currentUser.placeOfBirth}}</label>
+              <input *ngIf="!currentUser.placeOfBirth" type="text" class="form-control" formControlName="placeOfBirth"
+                name="placeOfBirth" id="placeOfBirth" placeholder="enter Place Of Birth"
+                title="enter your Place Of Birth number if any.">
+            </div>
+          </div>
+
+
+        </div>
+        <div class="col-xs-4">
+          <!-- <div class="bs-example"> -->
+          <div id="myCarousel" class="carousel slide">
+            <!-- Carousel indicators -->
+            <ol class="carousel-indicators">
+              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+              <li data-target="#myCarousel" data-slide-to="1"></li>
+              <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+            <!-- Wrapper for carousel items -->
+            <div class="carousel-inner">
+              <div class="item active">
+                <img id='img-upload' src="../../../assets/icons/img_avatar.png" alt="First Slide" class="avatar">
+              </div>
+              <div class="item">
+                <img id='img-upload' src="../../../assets/icons/img_avatar.png" alt="Second Slide" class="avatar">
+              </div>
+              <div class="item">
+                <img id='img-upload' src="../../../assets/icons/img_avatar.png" alt="Third Slide" class="avatar">
+              </div>
+            </div>
+            <br><br><br>
+            <!-- Carousel controls -->
+            <a class="carousel-control left" href="#myCarousel" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="carousel-control right" href="#myCarousel" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+          </div>
+          <!-- </div> -->
+
+          <label>Upload Image</label>
+          <div class="input-group">
+            <span class="input-group-btn">
+              <span class="btn btn-default btn-file">
+                Browse… <input type="file" (change)="impageUpload(file.files)" id="imgInp">
+              </span>
+            </span>
+            <input type="text" class="form-control" readonly>
+          </div>
+
+          <form action="https://kmat.herokuapp.com/saveFile/5c8ce8270ccfe6adf3a4902a" method="post"
+            enctype="multipart/form-data">
+            Select image to upload:
+            <input type="file" name="file" id="file">
+            <input type="submit" value="Upload Image" name="submit">
+          </form>
+
+          <!-- <img id='img-upload' /> -->
+          <!-- <div class="row">
+            <a href="#" class="img-thumbnail">
+              <img src="../../../assets/icons/img_avatar.png" alt="Avatar" class="avatar">
+            </a>
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-custom-red">
+      <div class="panel-heading header-color"><b>Contact Details</b></div>
+      <div class="panel-body">
+        <div formGroupName="address">
+
+          <div class="form-group">
+            <div class="col-xs-4">
+              <label for="doorNo">
+                <h4>Door No</h4>
+              </label><br>
+              <label *ngIf="currentUser.address[0].doorNo">{{currentUser.address[0].doorNo}}</label>
+              <input *ngIf="!currentUser.address[0].doorNo" type="text" class="form-control" name="doorNo"
+                formControlName="doorNo" id="doorNo" placeholder="enter Door No" title="enter your Door No if any.">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-xs-4">
+              <label for="street">
+                <h4>Street</h4>
+              </label><br>
+              <label *ngIf="currentUser.address[0].street">{{currentUser.address[0].street}}</label>
+              <input *ngIf="!currentUser.address[0].street" type="text" class="form-control" name="streetstreet"
+                formControlName="street" id="street" placeholder="enter street" title="enter your street if any.">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-xs-4">
+              <label for="area">
+                <h4>Area</h4>
+              </label><br>
+              <label *ngIf="currentUser.address[0].area">{{currentUser.address[0].area}}</label>
+              <input *ngIf="!currentUser.address[0].area" type="text" class="form-control" name="area"
+                formControlName="area" id="area" placeholder="enter area" title="enter your area if any.">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-xs-4">
+              <label for="city">
+                <h4>City</h4>
+              </label><br>
+              <label *ngIf="currentUser.address[0].city">{{currentUser.address[0].city}}</label>
+              <input *ngIf="!currentUser.address[0].city" type="text" class="form-control" name="city"
+                formControlName="city" id="city" placeholder="enter City" title="enter your City if any.">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-xs-4">
+              <label for="state">
+                <h4>State</h4>
+              </label><br>
+              <label *ngIf="currentUser.address[0].state">{{currentUser.address[0].state}}</label>
+              <input *ngIf="!currentUser.address[0].state" type="text" class="form-control" name="state"
+                formControlName="state" id="state" placeholder="enter State" title="enter your state if any.">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-xs-4">
+              <label for="country">
+                <h4>Country</h4>
+              </label><br>
+              <label *ngIf="currentUser.address[0].country">{{currentUser.address[0].country}}</label>
+              <input *ngIf="!currentUser.address[0].country" type="text" class="form-control" name="country"
+                formControlName="country" id="country" placeholder="enter country" title="enter your country if any.">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-xs-4">
+              <label for="zipcode">
+                <h4>Zipcode</h4>
+              </label><br>
+              <label *ngIf="currentUser.address[0].zipcode">{{currentUser.address[0].zipcode}}</label>
+              <input *ngIf="!currentUser.address[0].zipcode" type="text" class="form-control" name="zipcode"
+                formControlName="zipcode" id="zipcode" placeholder="enter zipcode" title="enter your zipcode if any.">
             </div>
           </div>
 
         </div>
-        <div class="col-xs-4">
-          <div class="row">
-            <a href="#" class="img-thumbnail">
-              <img src="../../../assets/icons/img_avatar.png" alt="Avatar" class="avatar">
-            </a>
-          </div>
-        </div>
-
-
-
       </div>
     </div>
 
-
-    <div class="panel">
-      <div class="panel-heading header-color"><b>Contact Details</b></div>
-      <div class="panel-body">
-        <div class="form-group">
-          <div class="col-xs-4">
-            <label for="email">
-              <h4>Address</h4>
-            </label>
-            <input type="text" class="form-control" id="address" placeholder="somewhere" title="enter a address">
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-xs-4">
-            <label for="currentCity">
-              <h4>City</h4>
-            </label>
-            <input type="text" class="form-control" name="currentCity" id="currentCity" placeholder="enter Current City"
-              title="enter your Current City if any.">
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="panel">
+    <div class="panel panel-custom-red">
       <div class="panel-heading header-color"><b>Education and Occupation</b></div>
       <div class="panel-body">
         <div class="form-group">
           <div class="col-xs-4">
             <label for="education">
               <h4>Education</h4>
-            </label>
-            <input type="text" class="form-control" name="education" id="education" placeholder="enter education"
+            </label><br>
+            <label *ngIf="currentUser.education">{{currentUser.education}}</label>
+            <input *ngIf="!currentUser.education" type="text" class="form-control" name="education"
+              formControlName="education" id="education" placeholder="enter education"
               title="enter your education if any.">
           </div>
         </div>
@@ -181,8 +319,10 @@
           <div class="col-xs-4">
             <label for="occupation">
               <h4>Occupation</h4>
-            </label>
-            <input type="text" class="form-control" name="occupation" id="occupation" placeholder="enter occupation"
+            </label><br>
+            <label *ngIf="currentUser.occupation">{{currentUser.occupation}}</label>
+            <input *ngIf="!currentUser.occupation" type="text" class="form-control" name="occupation"
+              formControlName="occupation" id="occupation" placeholder="enter occupation"
               title="enter your occupation if any.">
           </div>
         </div>
@@ -191,27 +331,30 @@
           <div class="col-xs-4">
             <label for="annualIncome">
               <h4>Annual Income</h4>
-            </label>
-            <input type="text" class="form-control" name="annualIncome" id="annualIncome"
-              placeholder="enter Annual Income" title="enter your Annual Income if any.">
+            </label><br>
+            <label *ngIf="currentUser.annualIncome">{{currentUser.annualIncome}}</label>
+            <input *ngIf="!currentUser.annualIncome" type="text" class="form-control" name="annualIncome"
+              formControlName="annualIncome" id="annualIncome" placeholder="enter Annual Income"
+              title="enter your Annual Income if any.">
           </div>
         </div>
       </div>
     </div>
 
-
-    <div class="panel">
+    <div class="panel panel-custom-red">
       <div class="panel-heading header-color"><b>Family Details</b></div>
       <div class="panel-body">
-
-
         <div class="form-group">
           <div class="col-xs-4">
             <label for="familyType">
               <h4>Family Type</h4>
-            </label>
-            <input type="text" class="form-control" name="familyType" id="familyType" placeholder="enter Family Type"
-              title="enter your Family Type if any.">
+            </label><br>
+            <label *ngIf="currentUser.familyType">{{currentUser.familyType}}</label>
+            <select *ngIf="!currentUser.familyType" class="form-control" name="familyType" formControlName="familyType">
+              <option value="">Select a Family Type</option>
+              <option value="Nuclear">Nuclear</option>
+              <option value="Joint">Joint</option>
+            </select>
           </div>
         </div>
 
@@ -219,9 +362,16 @@
           <div class="col-xs-4">
             <label for="familyStatus">
               <h4>Family Status</h4>
-            </label>
-            <input type="text" class="form-control" name="familyStatus" id="familyStatus"
-              placeholder="enter Family Status" title="enter your Family Status if any.">
+            </label><br>
+            <label *ngIf="currentUser.familyStatus">{{currentUser.familyStatus}}</label>
+            <select *ngIf="!currentUser.familyStatus" class="form-control" name="familyStatus"
+              formControlName="familyStatus">
+              <option value="">Select a Family Status</option>
+              <option value="Rich">Rich</option>
+              <option value="Affluent">Affluent</option>
+              <option value="Middle Class">Middle Class</option>
+              <option value="Upper Middle Class">Upper Middle Class</option>
+            </select>
           </div>
         </div>
 
@@ -229,19 +379,31 @@
           <div class="col-xs-4">
             <label for="familyValues">
               <h4>Family Values</h4>
-            </label>
-            <input type="text" class="form-control" name="familyValues" id="familyValues"
-              placeholder="enter Family Values" title="enter your Family Values if any.">
+            </label><br>
+            <label *ngIf="currentUser.familyValues">{{currentUser.familyValues}}</label>
+            <select *ngIf="!currentUser.familyValues" class="form-control" name="familyValues"
+              formControlName="familyValues">
+              <option value="">Select a Family Values</option>
+              <option value="Traditional">Traditional</option>
+              <option value="Moderate">Moderate</option>
+              <option value="Liberal">Liberal</option>
+              <option value="Orthodox">Orthodox</option>
+            </select>
           </div>
         </div>
 
         <div class="form-group">
           <div class="col-xs-4">
-            <label for="foodhabits">
+            <label for="foodHabits">
               <h4>Food Habits</h4>
-            </label>
-            <input type="text" class="form-control" name="foodhabits" id="foodhabits" placeholder="enter Food Habits"
-              title="enter your Food Habits number if any.">
+            </label><br>
+            <label *ngIf="currentUser.foodHabits">{{currentUser.foodHabits}}</label>
+            <select *ngIf="!currentUser.foodHabits" class="form-control" name="foodHabits" formControlName="foodHabits">
+              <option value="">Select a Food Habits</option>
+              <option value="vegetarian">Vegetarian</option>
+              <option value="non Veg">Non Veg </option>
+              <option value="eggetarian">Eggetarian</option>
+            </select>
           </div>
         </div>
 
@@ -249,9 +411,11 @@
           <div class="col-xs-4">
             <label for="noOfSiblings">
               <h4>No Of Siblings</h4>
-            </label>
-            <input type="text" class="form-control" name="noOfSiblings" id="noOfSiblings"
-              placeholder="enter No Of Siblings" title="enter your No Of Siblings if any.">
+            </label><br>
+            <label *ngIf="currentUser.noOfSiblings">{{currentUser.noOfSiblings}}</label>
+            <input *ngIf="!currentUser.noOfSiblings" type="text" class="form-control" name="noOfSiblings"
+              formControlName="noOfSiblings" id="noOfSiblings" placeholder="enter No Of Siblings"
+              title="enter your No Of Siblings if any." />
           </div>
         </div>
 
@@ -259,9 +423,11 @@
           <div class="col-xs-4">
             <label for="siblingsMaritalStatus">
               <h4>Siblings Marital Status</h4>
-            </label>
-            <input type="text" class="form-control" name="siblingsMaritalStatus" id="siblingsMaritalStatus"
-              placeholder="enter Siblings Marital Status" title="enter your Siblings Marital Status if any.">
+            </label><br>
+            <label *ngIf="currentUser.siblingsMaritalStatus">{{currentUser.siblingsMaritalStatus}}</label>
+            <input *ngIf="!currentUser.siblingsMaritalStatus" type="text" class="form-control"
+              name="siblingsMaritalStatus" formControlName="siblingsMaritalStatus" id="siblingsMaritalStatus"
+              placeholder="enter Siblings Marital Status" title="enter your Siblings Marital Status if any." />
           </div>
         </div>
 
@@ -269,9 +435,11 @@
           <div class="col-xs-4">
             <label for="fatherOccupation">
               <h4>Father Occupation</h4>
-            </label>
-            <input type="text" class="form-control" name="fatherOccupation" id="fatherOccupation"
-              placeholder="enter Father Occupation" title="enter your Father Occupation if any.">
+            </label><br>
+            <label *ngIf="currentUser.fatherOccupation">{{currentUser.fatherOccupation}}</label>
+            <input *ngIf="!currentUser.fatherOccupation" type="text" class="form-control" name="fatherOccupation"
+              formControlName="fatherOccupation" id="fatherOccupation" placeholder="enter Father Occupation"
+              title="enter your Father Occupation if any." />
           </div>
         </div>
 
@@ -279,19 +447,33 @@
           <div class="col-xs-4">
             <label for="fatherContactNo">
               <h4>Father Contact No</h4>
-            </label>
-            <input type="text" class="form-control" name="fatherContactNo" id="fatherContactNo"
-              placeholder="enter Father Contact No" title="enter your Father Contact No if any.">
+            </label><br>
+            <label *ngIf="currentUser.fatherContactNo">{{currentUser.fatherContactNo}}</label>
+            <input *ngIf="!currentUser.fatherContactNo" type="text" class="form-control" name="fatherContactNo"
+              formControlName="fatherContactNo" id="fatherContactNo" placeholder="enter Father Contact No"
+              title="enter your Father Contact No if any.">
           </div>
         </div>
 
         <div class="form-group">
           <div class="col-xs-4">
             <label for="kuladeivamPlace">
-              <h4>Kuladeivam & Place</h4>
-            </label>
-            <input type="text" class="form-control" name="KuladeivamPlace" id="KuladeivamPlace"
-              placeholder="enter Kuladeivam & Place" title="enter your Kuladeivam & Place if any.">
+              <h4>Kuladeivam</h4>
+            </label><br>
+            <label *ngIf="currentUser.godName">{{currentUser.godName}}</label>
+            <input *ngIf="!currentUser.godName" type="text" class="form-control" name="godName" id="godName"
+              placeholder="enter Kuladeivam" title="enter your Kuladeivam if any.">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-xs-4">
+            <label for="Place">
+              <h4>Place</h4>
+            </label><br>
+            <label *ngIf="currentUser.godPlace">{{currentUser.godPlace}}</label>
+            <input *ngIf="!currentUser.godPlace" type="text" class="form-control" formControlName="godPlace"
+              name="godPlace" id="godPlace" placeholder="enter Place" title="enter your Place if any.">
           </div>
         </div>
 
@@ -299,83 +481,156 @@
           <div class="col-xs-4">
             <label for="kootam">
               <h4>Kootam</h4>
-            </label>
-            <input type="text" class="form-control" name="kootam" id="kootam" placeholder="enter Kootam"
-              title="enter your Kootam if any.">
+            </label><br>
+            <label *ngIf="currentUser.kootam">{{currentUser.kootam}}</label>
+            <select *ngIf="!currentUser.kootam" class="form-control" name="kootam" formControlName="kootam">
+              <option value="">Select a Kootam</option>
+              <option *ngFor="let value of kootamArray" value="{{value}}">{{value}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div formGroupName="relationShip">
+          <div class="form-group">
+            <div class="col-xs-4">
+              <label for="relationName">
+                <h4>Relation Name</h4>
+              </label><br>
+              <label
+                *ngIf="currentUser.relationShip[0].relationName">{{currentUser.relationShip[0].relationName}}</label>
+              <input *ngIf="!currentUser.relationShip[0].relationName" type="text" class="form-control"
+                name="relationName" id="relationName" formControlName="relationName" placeholder="enter Relation Name"
+                title="enter your Relation Name if any.">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-xs-4">
+              <label for="relation">
+                <h4>Relation</h4>
+              </label><br>
+              <label *ngIf="currentUser.relationShip[0].relation">{{currentUser.relationShip[0].relation}}</label>
+              <select *ngIf="!currentUser.relationShip[0].relation" class="form-control" name="relation"
+                formControlName="relation">
+                <option value="">Select a Relation</option>
+                <option value="brother">Brother</option>
+                <option value="sister">Sister</option>
+                <option value="uncle">Uncle</option>
+                <option value="aunt">Aunt</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-xs-4">
+              <label for="relationMobile">
+                <h4>Relation Mobile</h4>
+              </label><br>
+              <label
+                *ngIf="currentUser.relationShip[0].relationMobile">{{currentUser.relationShip[0].relationMobile}}</label>
+              <input *ngIf="!currentUser.relationShip[0].relationMobile" type="text" class="form-control"
+                name="relationMobile" id="relationMobile" formControlName="relationMobile"
+                placeholder="enter Relation Mobile" title="enter your Relation Mobile if any.">
+            </div>
           </div>
         </div>
 
       </div>
     </div>
 
-    <div class="panel">
-      <div class="panel-heading header-color"><b>Other details</b></div>
+    <div class="panel panel-custom-red">
+      <div class="panel-heading panel-default"><b>Other details</b></div>
       <div class="panel-body">
 
         <div class="form-group">
           <div class="col-xs-4">
             <label for="physicalStatus">
               <h4>Physical Status</h4>
-            </label>
-            <input type="text" class="form-control" name="physicalStatus" id="physicalStatus"
-              placeholder="enter Physical Status" title="enter your Physical Status if any.">
+            </label><br>
+            <label *ngIf="currentUser.physicalStatus">{{currentUser.physicalStatus}}</label>
+            <select *ngIf="!currentUser.physicalStatus" class="form-control" name="physicalStatus"
+              formControlName="physicalStatus">
+              <option value="">Select a Physical Status</option>
+              <option value="Normal">Normal</option>
+              <option value="Challenged">Challenged</option>
+            </select>
           </div>
         </div>
 
+        <div class="form-group">
+          <div class="col-xs-4">
+            <label for="moonSign">
+              <h4>Moon Sign</h4>
+            </label><br>
+            <label *ngIf="currentUser.moonSign">{{currentUser.moonSign}}</label>
+            <select *ngIf="!currentUser.moonSign" class="form-control" name="moonSign" formControlName="moonSign">
+              <option value="">Select a Moon Sign</option>
+              <option *ngFor="let value of moonSignArray" value="{{value}}">{{value}}</option>
+            </select>
+          </div>
+        </div>
 
+        <div class="form-group">
+          <div class="col-xs-4">
+            <label for="star">
+              <h4>Star</h4>
+            </label><br>
+            <label *ngIf="currentUser.star">{{currentUser.star}}</label>
+            <select *ngIf="!currentUser.star" class="form-control" name="star" formControlName="star">
+              <option value="">Select a Star</option>
+              <option *ngFor="let value of starsArray" value="{{value}}">{{value}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-xs-4">
+            <label for="dosham">
+              <h4>Dosham</h4>
+            </label><br>
+            <label *ngIf="currentUser.dosham">{{currentUser.dosham}}</label>
+            <!-- Default unchecked -->
+            <div *ngIf="!currentUser.dosham" class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="dosham" name="dosham" formControlName="dosham">
+              <label class="custom-control-label" for="dosham">Dosham</label>
+            </div>
+          </div>
+        </div>
 
         <div class="form-group">
           <div class="col-xs-4">
             <label for="prefferedLocation">
               <h4>Preffered Location</h4>
-            </label>
-            <input type="text" class="form-control" name="prefferedLocation" id="prefferedLocation"
-              placeholder="enter Preffered Location" title="enter your Preffered Location if any.">
+            </label><br>
+            <label *ngIf="currentUser.prefferedLocation">{{currentUser.prefferedLocation}}</label>
+            <input *ngIf="!currentUser.prefferedLocation" type="text" class="form-control" name="prefferedLocation"
+              formControlName="prefferedLocation" id="prefferedLocation" placeholder="enter Preffered Location"
+              title="enter your Preffered Location if any.">
           </div>
         </div>
 
-        <div class="form-group">
-          <div class="col-xs-4">
-            <label for="imagePaths">
-              <h4>Image Paths</h4>
-            </label>
-            <input type="text" class="form-control" name="imagePaths" id="imagePaths" placeholder="enter Image Paths"
-              title="enter your Image Paths if any.">
+        <!-- <div formGroupName="imagePaths">
+          <div class="form-group">
+            <div class="col-xs-4">
+              <label for="imagePaths">
+                <h4>Image Paths</h4>
+              </label><br>
+              <label>{{currentUser.imagePaths}}</label>
+              <input *ngIf="!currentUser.imagePaths" type="text" class="form-control" name="imagePath"
+                formControlName="imagePath" id="imagePath" placeholder="enter Image Paths"
+                title="enter your Image Paths if any.">
+            </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
-
-
-    <!-- <div class="form-group">
-      <div class="col-xs-4">
-        <label for="password">
-          <h4>Password</h4>
-        </label>
-        <input type="password" class="form-control" name="password" id="password" placeholder="password"
-          title="enter your password.">
-      </div>
-    </div>
-    <div class="form-group">
-
-      <div class="col-xs-4">
-        <label for="password2">
-          <h4>Verify</h4>
-        </label>
-        <input type="password" class="form-control" name="password2" id="password2" placeholder="password2"
-          title="enter your password2.">
-      </div>
-    </div> -->
     <div class="form-group">
       <div class="col-lg-12  ml-auto">
-        <br>
         <button class="btn btn-info1 btn-lg-block w3ls-btn px-sm-4 px-3 text-capitalize mr-sm-2" type="submit">
           <p style="color:#feed01;">Save</p>
         </button>
-        <!-- <button class="btn btn-info1 btn-lg-block w3ls-btn px-sm-4 px-3 text-capitalize mr-sm-2" type="reset">
-          <p style="color:#feed01;">Reset</p>
-        </button> -->
       </div>
     </div>
   </form>
+  <br><br><br><br><br><br>
 </div>

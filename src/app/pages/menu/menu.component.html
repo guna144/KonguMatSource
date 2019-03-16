@@ -1,0 +1,46 @@
+<!-- nav -->
+<nav class="py-3">
+  <div id="logo">
+    <h1>
+      <a class="navbar-brand" href="index.html">
+        <span class="fa fa-empire"></span>Kongu Manamedai
+        <!-- <span><span class="line"></span>Organizer</span> -->
+      </a>
+    </h1>
+  </div>
+
+  <label for="drop" class="toggle"><span class="fa fa-bars"></span></label>
+  <input type="checkbox" id="drop" />
+  <ul class="menu mt-2">
+    <li class="mr-lg-3 mr-2 active">
+      <a href="#" [routerLink]="['/home']" routerLinkActive="router-link-active">Home</a>
+    </li>
+    <li class="mr-lg-3 mr-2">
+      <a href="#" [routerLink]="['/about']" routerLinkActive="router-link-active">About Us</a>
+    </li>
+    <li class="mr-lg-3 mr-2">
+      <a href="#" [routerLink]="['/services']" routerLinkActive="router-link-active">Services</a>
+    </li>
+    <!-- <li class="mr-lg-3 mr-2">
+      <a href="#" [routerLink]="['/gallery']" routerLinkActive="router-link-active">Gallery</a>
+    </li> -->
+    <!-- <li class="mr-lg-3 mr-2"><a href="gallery.html">Gallery</a></li> -->
+    <!-- <li class="mr-lg-3 mr-2 pb-0"> -->
+    <!-- First Tier Drop Down -->
+    <!-- <label for="drop-2" class="toggle"
+        >Pages <span class="fa fa-angle-down" aria-hidden="true"></span>
+      </label>
+      <a href="#"
+        >Pages <span class="fa fa-angle-down" aria-hidden="true"></span
+      ></a>
+      <input type="checkbox" id="drop-2" />
+      <ul class="drop-down-ul">
+        <li><a href="error.html">Error Page</a></li>
+        <li><a href="events.html">Events Page</a></li>
+      </ul>
+    </li> -->
+    <li>
+      <a href="#" [routerLink]="['/contact']" routerLinkActive="router-link-active">Contact</a>
+    </li>
+  </ul>
+</nav>
