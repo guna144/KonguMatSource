@@ -187,22 +187,24 @@
           </div>
           <!-- </div> -->
 
-          <label>Upload Image</label>
+         
           <div class="input-group">
             <span class="input-group-btn">
               <span class="btn btn-default btn-file">
-                Browse… <input type="file" (change)="impageUpload(file.files)" id="imgInp">
+                Browse <input type="file" name="file" ng2FileSelect [uploader]="uploader" id="imgInp">
               </span>
             </span>
-            <input type="text" class="form-control" readonly>
+            <div>
+            <button type="button" class="btn btn-success btn-s" 
+  (click)="uploader.uploadAll()" 
+  [disabled]="!uploader.getNotUploadedItems().length" >
+      Upload an Image
+</button></div>
           </div>
 
-          <form action="https://kmat.herokuapp.com/saveFile/5c8ce8270ccfe6adf3a4902a" method="post"
-            enctype="multipart/form-data">
-            Select image to upload:
-            <input type="file" name="file" id="file">
-            <input type="submit" value="Upload Image" name="submit">
-          </form>
+          
+
+
 
           <!-- <img id='img-upload' /> -->
           <!-- <div class="row">

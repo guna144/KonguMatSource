@@ -3,7 +3,10 @@ import { KonguService } from '../../../app/_services/kongu.service';
 import { User } from '../../_models/user';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {  FileUploader, FileSelectDirective } from 'ng2-file-upload/ng2-file-upload';
 import * as $ from 'jquery';
+
+const URL = 'https://kmat.herokuapp.com/saveFile/5c8ce8270ccfe6adf3a4902a';
 
 @Component({
   selector: 'app-profile',
@@ -11,6 +14,8 @@ import * as $ from 'jquery';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+
+  title = 'app';
 
   currentUser: User;
   profileForm: FormGroup;
@@ -88,6 +93,12 @@ export class ProfileComponent implements OnInit {
     this.loadStarsData();
     this.loadMoonSignData();
 
+    this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
+    this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+         console.log('ImageUpload:uploaded:', item, status, response);
+         
+     };
+
   }
 
 
@@ -143,5 +154,7 @@ export class ProfileComponent implements OnInit {
     if (selectedValue === 'never married') { this.enableFlag = true; }
     else { this.enableFlag = false; }
   }
+
+  public uploader: FileUploader = new FileUploader({url: URL, itemAlias: 'file'});
 
 }

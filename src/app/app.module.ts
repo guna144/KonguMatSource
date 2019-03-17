@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FileSelectDirective } from 'ng2-file-upload';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -44,7 +45,8 @@ const appRoutes: Routes = [
     ProfileComponent,
     HeaderComponent,
     FooterComponent,
-    MenuComponent
+    MenuComponent,
+    FileSelectDirective
   ],
   imports: [
     ReactiveFormsModule,
