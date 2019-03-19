@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpRequest, HttpEvent } from '@angular/common/http';
 import { Configuration } from '../configuration/app.constants';
 import { User } from '../_models/user';
 import { Observable } from 'rxjs';
@@ -32,11 +32,17 @@ export class KonguService {
     return this._http.post(this.serviceURL + `/saveProfile`, profileJSON);
   }
 
-  imageSave(profileId: string) {
-    profileId = '5c8ce8270ccfe6adf3a4902a';
-    return this._http.post('https://kmat.herokuapp.com/saveFile/', profileId);
+  fileUpload(file: File, profileId: string): Observable<HttpEvent<{}>> {
+    const formdata: FormData = new FormData();
+    formdata.append('file', file);
+    formdata.append('profileId', profileId);
+    const req = new HttpRequest('POST', this.serviceURL + '/saveFile/', formdata, { reportProgress: true, responseType: 'text' });
+    return this._http.request(req);
   }
 
+  getImages(profileId: string) {
+    return this._http.get(this.serviceURL + '/getImages/' + profileId);
+  }
 
 
 }

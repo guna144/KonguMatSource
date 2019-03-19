@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { KonguService } from '../../../app/_services/kongu.service';
 import { User } from '../../_models/user';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {  FileUploader, FileSelectDirective } from 'ng2-file-upload/ng2-file-upload';
+import { DomSanitizer } from '@angular/platform-browser';
 import * as $ from 'jquery';
-
-const URL = 'https://kmat.herokuapp.com/saveFile/5c8ce8270ccfe6adf3a4902a';
 
 @Component({
   selector: 'app-profile',
@@ -25,13 +23,23 @@ export class ProfileComponent implements OnInit {
   starsArray: any;
   dataURL = '../../../assets/data/';
   public imagePath;
+  profileImages: any;
+  message: string;
+  selectedFiles: FileList;
+  currentFileUpload: File;
+  filePath: string;
 
-  constructor(private formBuilder: FormBuilder, private _service: KonguService, private _http: HttpClient) {
+  constructor(private formBuilder: FormBuilder, private _service: KonguService,
+    private _http: HttpClient, private domSanitizer: DomSanitizer, private fb: FormBuilder) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    console.log('Current User : ' + JSON.stringify(this.currentUser));
+    this.imageRetrieve();
   }
 
   ngOnInit() {
+
+    $(document).ready(function () {
+      $('#success-alert').hide();
+    });
     this.profileForm = this.formBuilder.group({
       profileId: '',
       mobile: ['', Validators.required],
@@ -92,22 +100,39 @@ export class ProfileComponent implements OnInit {
     this.loadKootamData();
     this.loadStarsData();
     this.loadMoonSignData();
-
-    this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
-    this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-         console.log('ImageUpload:uploaded:', item, status, response);
-         
-     };
-
   }
 
+  fetchFilePath(event) {
+    console.log('input.val() : ' + this.currentUser.profileId + ' == ' + event.target.value);
+    this.selectedFiles = event.target.files;
+    this.filePath = event.target.value;
+  }
 
-  impageUpload(e) {
-    console.log('input.val() : ' + this.currentUser.profileId + ' == ' + e.target.value);
-    this._service.imageSave(this.currentUser.profileId).subscribe(data => {
-      console.log('This is upload : ' + data);
+  upload() {
+    this.currentFileUpload = this.selectedFiles.item(0);
+    this._service.fileUpload(this.currentFileUpload, this.currentUser.profileId).subscribe(event => {
+      if (event instanceof HttpResponse) {
+        this.message = 'Success! File is completely uploaded!';
+        this.imageRetrieve();
+      }
     });
   }
+
+  imageRetrieve() {
+    this._service.getImages(this.currentUser.profileId).subscribe(data => {
+      this.profileImages = data;
+
+      window.setTimeout(function () {
+        $('.alert').fadeTo(500, 0).slideUp(500, function () {
+          $(this).remove();
+        });
+      }, 2000);
+
+    }, error => {
+      console.log(error);
+    });
+  }
+
 
   loadKootamData() {
     this._http.get(this.dataURL + '/kootam.json').subscribe(data => {
@@ -154,7 +179,4 @@ export class ProfileComponent implements OnInit {
     if (selectedValue === 'never married') { this.enableFlag = true; }
     else { this.enableFlag = false; }
   }
-
-  public uploader: FileUploader = new FileUploader({url: URL, itemAlias: 'file'});
-
 }
