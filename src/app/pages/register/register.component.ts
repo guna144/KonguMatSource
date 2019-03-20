@@ -3,6 +3,7 @@ import { KonguService } from '../../../app/_services/kongu.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertService } from '../../../app/_services/alert.service';
+import { WindowRef } from '../../_services/WindowRef';
 import * as $ from 'jquery';
 
 @Component({
@@ -20,7 +21,7 @@ export class RegisterComponent implements OnInit {
   jsonObject: any = {};
   emailUsed: string;
   mobileUsed: string;
-
+  rzp1: any;
 
   constructor(
     private _service: KonguService,
@@ -28,8 +29,10 @@ export class RegisterComponent implements OnInit {
     private _router: Router,
     private formBuilder: FormBuilder,
     private router: Router,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private winRef: WindowRef
   ) { }
+
 
 
   ngOnInit() {
@@ -55,13 +58,15 @@ export class RegisterComponent implements OnInit {
       chequeNumber: ['', Validators.required],
       bankName: ['', Validators.required],
       branchName: ['', Validators.required],
-      amount: ['', Validators.required]
+      amount: ['', Validators.required],
+      description: ['', Validators.required]
     });
 
     $(document).ready(function () {
       $('#agreeForm').hide();
       $('#paymentFrm').hide();
       $('#offlineForm').hide();
+      $('#onlineForm').hide();
 
       $('#next').click(function () {
         $('#paymentFrm').show();
@@ -73,9 +78,41 @@ export class RegisterComponent implements OnInit {
         $('#regForm').show();
         // redirect to profile page......
       });
+
     });
   }
 
+  public initPay(paymentForm): void {
+    // console.log(paymentForm);
+    const regJSON = JSON.parse(this.jsonObject);
+    // console.log(regJSON.firstname + ' : ' + regJSON.email + ' : ' + regJSON.mobile);
+
+    const options = {
+      'key': 'rzp_live_KDIXJbcpQwgFxn',
+      'amount': paymentForm.membership, // '100', // 2000 paise = INR 20
+      'name': 'Kongumanamedai.com',
+      'description': paymentForm.description,
+      'image': '/your_logo.png',
+      'handler': function (response) {
+        console.log(response.razorpay_payment_id);
+        console.log(response);
+      },
+      'prefill': {
+        'name': regJSON.firstname,
+        'email': regJSON.email,
+        'contact': regJSON.mobile
+      },
+      'notes': {
+        'address': 'Hello World'
+      },
+      'theme': {
+        'color': '#F37254'
+      }
+    };
+
+    this.rzp1 = new this.winRef.nativeWindow.Razorpay(options);
+    this.rzp1.open();
+  }
   // convenience getter for easy access to form fields
   get f() {
     return this.registerForm.controls;
@@ -109,22 +146,23 @@ export class RegisterComponent implements OnInit {
     const regJSON = [];
     regJSON.push(JSON.parse(this.jsonObject));
     regJSON.push(JSON.parse(paymentJSON));
-
-    this._service.register(JSON.stringify(regJSON)).subscribe(
-      data => {
-        console.log('Registration successful');
-        localStorage.setItem('currentUser', JSON.stringify(data));
-        this.router.navigate(['/profile']);
-        $('#regForm').hide();
-        $('#agreeForm').hide();
-        $('#paymentFrm').hide();
-        $('#register-popup').hide();
-      },
-      error => {
-        // this.alertService.error(error);
-        this.loading = false;
-      }
-    );
+    console.log(regJSON);
+    console.log(JSON.stringify(regJSON));
+    // this._service.register(JSON.stringify(regJSON)).subscribe(
+    //   data => {
+    //     console.log('Registration successful');
+    //     localStorage.setItem('currentUser', JSON.stringify(data));
+    //     this.router.navigate(['/profile']);
+    //     $('#regForm').hide();
+    //     $('#agreeForm').hide();
+    //     $('#paymentFrm').hide();
+    //     $('#register-popup').hide();
+    //   },
+    //   error => {
+    //     // this.alertService.error(error);
+    //     this.loading = false;
+    //   }
+    // );
   }
 
   close() {
@@ -154,10 +192,12 @@ export class RegisterComponent implements OnInit {
 
   onLine() {
     $('#offlineForm').hide();
+    $('#onlineForm').show();
   }
 
   offLine() {
     $('#offlineForm').show();
+    $('#onlineForm').hide();
   }
 
   emailCheck(e) {

@@ -123,9 +123,9 @@
           <label for="plan" class="col-form-label">Select a Plan</label>
           <select class="form-control" name="membership" formControlName="membership">
             <option value="">Select a Membership</option>
-            <option value="silver">Silver</option>
-            <option value="gold">Gold</option>
-            <option value="platinum">Platinum</option>
+            <option value="100">Silver</option>
+            <option value="200">Gold</option>
+            <option value="300">Platinum</option>
           </select>
         </div>
         <!-- <div class="col-xs-6 col-xs-offset-3"> -->
@@ -140,9 +140,17 @@
             Offline
           </label>
         </div>
-        <div class="form-group">
-
+        <div id="onlineForm">
+          <div class="form-group">
+            <label for="description" class="col-form-label">Description</label>
+            <input type="text" class="form-control" placeholder="" formControlName="description" />
+          </div>
+          <div class="right-w3l">
+            <button class="form-control" class="btn btn-success btn-s"
+              (click)="initPay(paymentForm.value);">Pay</button>
+          </div>
         </div>
+
         <!-- </div> -->
         <div id="offlineForm">
           <div class="form-group">
@@ -177,7 +185,6 @@
               <div *ngIf="p.amount.errors.required">Amount is required</div>
             </div>
           </div>
-
           <div class="right-w3l">
             <input type="submit" class="form-control" value="Finish" />
           </div>
