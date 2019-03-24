@@ -2,7 +2,8 @@
 <header>
   <div class="container">
     <!-- top header -->
-    <section class="row top_header pt-3">
+    <app-header></app-header>
+    <!-- <section class="row top_header pt-3">
       <div class="col-lg-6 buttons ml-auto">
         <p><span class="fa fa-phone"></span> +91-424-2270227</p>
         <a class="btn btn-info btn-lg-block w3ls-btn px-sm-4 px-3 text-capitalize mr-sm-2"
@@ -10,20 +11,20 @@
         <a class="btn btn-info1 btn-lg-block w3ls-btn1 px-sm-4 px-3 text-capitalize"
           href="/about#register-popup">Register</a>
       </div>
-    </section>
+    </section> -->
     <!-- top header -->
     <!-- nav -->
-    <nav class="py-3">
+    <!-- <nav class="py-3">
       <div id="logo">
         <h1>
           <a class="navbar-brand" href="index.html">
-            <span class="fa fa-empire"></span>Kongu Manamedai
-            <!-- <span><span class="line"></span>Organizer</span> -->
-          </a>
+            <span class="fa fa-empire"></span>Kongu Manamedai -->
+    <!-- <span><span class="line"></span>Organizer</span> -->
+    <!-- </a>
         </h1>
-      </div>
+      </div> -->
 
-      <label for="drop" class="toggle"><span class="fa fa-bars"></span></label>
+    <!-- <label for="drop" class="toggle"><span class="fa fa-bars"></span></label>
       <input type="checkbox" id="drop" />
       <ul class="menu mt-2">
         <li class="mr-lg-3 mr-2"><a href="#" [routerLink]="['/home']" routerLinkActive="router-link-active">Home</a>
@@ -32,11 +33,11 @@
             routerLinkActive="router-link-active">About
             Us</a></li>
         <li class="mr-lg-3 mr-2"><a href="#" [routerLink]="['/services']"
-            routerLinkActive="router-link-active">Services</a></li>
-        <!-- <li class="mr-lg-3 mr-2"><a href="#" [routerLink]="['/gallery']" routerLinkActive="router-link-active">Gallery</a></li> -->
-        <!-- <li class="mr-lg-3 mr-2 pb-0"> -->
-        <!-- First Tier Drop Down -->
-        <!-- <label for="drop-2" class="toggle"
+            routerLinkActive="router-link-active">Services</a></li> -->
+    <!-- <li class="mr-lg-3 mr-2"><a href="#" [routerLink]="['/gallery']" routerLinkActive="router-link-active">Gallery</a></li> -->
+    <!-- <li class="mr-lg-3 mr-2 pb-0"> -->
+    <!-- First Tier Drop Down -->
+    <!-- <label for="drop-2" class="toggle"
             >Pages <span class="fa fa-angle-down" aria-hidden="true"></span>
           </label>
           <a href="#"
@@ -48,10 +49,11 @@
             <li><a href="events.html">Events Page</a></li>
           </ul>
         </li> -->
-        <li><a href="#" [routerLink]="['/contact']" routerLinkActive="router-link-active">Contact</a></li>
+    <!-- <li><a href="#" [routerLink]="['/contact']" routerLinkActive="router-link-active">Contact</a></li>
       </ul>
-    </nav>
+    </nav> -->
     <!-- //nav -->
+    <app-menu [activeMenu]="'about'"></app-menu>
   </div>
 </header>
 <!-- //header -->

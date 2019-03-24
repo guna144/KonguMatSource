@@ -75,6 +75,7 @@ nav {
 	padding: 0;
 }
 
+
 #logo a {
     float: left;
     font-size: 1em;
@@ -96,7 +97,7 @@ nav {
     font-size: inherit;
 }
 #logo a span {
-    color: #004b1a;
+    color: #fff;
     position: absolute;
     font-size: 17px;
     bottom: -28%;
@@ -155,11 +156,11 @@ nav ul li ul li:hover { background: #f8f9fa; }
 
 /* Background color change on Hover */
 nav a:hover { 
-    color: #fff;
+    color: #feed01;
     border-bottom: 2px solid #fff;
 }
 .menu li.active  a{ 
-    color: #fff;
+    color: #feed01;
     border-bottom: 2px solid #fff;
 }
 
@@ -250,7 +251,7 @@ li > a:only-child:after { content: ''; }
 		color: #333;
 	}
 	nav a:hover,.menu li.active a {
-		color: #999;
+		color: #feed01;
 		border-bottom: 2px solid #999;
 	}
 	.menu .toggle {
@@ -391,7 +392,7 @@ li > a:only-child:after { content: ''; }
     letter-spacing: 1px;
     color: #eee;
 }
-/*-- //header --*/
+/*-- //	header --*/
 
 /*-- popup --*/
 .popup-effect {
@@ -470,12 +471,13 @@ li > a:only-child:after { content: ''; }
 }
 
 .inner_banner {
-    background: url(../images/banner.jpg)no-repeat center;
+    background: url(../images/innerBanner.jpg)no-repeat center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     -ms-background-size: cover;
     background-size: cover;
+    padding: 0;
     position: relative;
     z-index: 1;
 }
@@ -551,13 +553,15 @@ li.breadcrumb-item a {
 }
 
 .banner-heading h3 {
-    color: #fff;
+    color: #feed01;
     display: inline-block;
     font-size: 4.2em;
     text-transform: capitalize;
      text-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 }
-
+.banner-title{
+	color: #feed01;
+}
 .banner-heading {
 	text-align:left;
 }
@@ -1197,6 +1201,7 @@ p.para-w3-agile {
     font-size: 16px;
     color: #8c8c8c;
     --padding: 0.5em 1em .5em 0;
+    border: 0;
     width: 100%;
     border-bottom: 1px solid #bbb;
     background: none;
