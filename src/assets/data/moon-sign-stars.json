@@ -1,0 +1,94 @@
+{
+    "moonsign": [
+        "Mesham",
+        "Rishabam",
+        "Mithunam",
+        "Kadagam",
+        "Simmam",
+        "Kanni",
+        "Thulam",
+        "Viruchigam",
+        "Dhanusu",
+        "Magaram",
+        "Kumbam",
+        "Meenam"
+    ],
+    "Mesham": [
+        "Ashwini",
+        "Bharani",
+        "Kiruthigai 1st Patham"
+    ],
+    "Rishabam": [
+        "Kiruthigai 2nd Patham",
+        "Kiruthigai 3rd Patham",
+        "Kiruthigai 4th Patham",
+        "Rohini",
+        "Mirugashirisham 1st Patham",
+        "Mirugashirisham 2nd Patham"
+    ],
+    "Mithunam": [
+        "Mirugashirisham 3rd Patham",
+        "Mirugashirisham 4th Patham",
+        "Thiruvathirai",
+        "Poonar Poosam 1st Patham",
+        "Poonar Poosam 2nd Patham",
+        "Poonar Poosam 3rd Patham"
+    ],
+    "Kadagam": [
+        "Poonar Poosam 4th Patham",
+        "Poosam",
+        "Ayilyam"
+    ],
+    "Simmam": [
+        "Magam",
+        "Pooram",
+        "Uthiram 1st Patham"
+    ],
+    "Kanni": [
+        "Uthiram 2nd Patham",
+        "thiram 3rd Patham",
+        "Uthiram 4th Patham",
+        "Hastham",
+        "Chithirai 1st Patham",
+        "Chithirai 2nd Patham"
+    ],
+    "Thulam": [
+        "Chithirai 3rd Patham",
+        "Chithirai 4th Patham",
+        "Swathi",
+        "Visagam 1st Patham",
+        "Visagam 2nd Patham",
+        "Visagam 3rd Patham"
+    ],
+    "Viruchigam": [
+        "Visagam 4th Patham",
+        "Anusam",
+        "Kettai"
+    ],
+    "Dhanusu": [
+        "Moolam",
+        "Pooradam",
+        "Uthiradam 1st Patham"
+    ],
+    "Magaram": [
+        "Uthiradam 2nd Patham",
+        "Uthiradam 3rd Patham",
+        "Uthiradam 4th Patham",
+        "Thiruvonam",
+        "Avittam 1st Patham",
+        "Avittam 2nd Patham"
+    ],
+    "Kumbam": [
+        "Avittam 3rd Patham",
+        "Avittam 4th Patham",
+        "Sathayam",
+        "Pooratathi 1st Patham",
+        "Pooratathi 2nd Patham",
+        "Pooratathi 3rd Patham"
+    ],
+    "Meenam": [
+        "Pooratathi 4th Patham",
+        "Uthiratathi",
+        "Revathi"
+    ]
+}
