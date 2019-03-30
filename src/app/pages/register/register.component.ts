@@ -88,7 +88,7 @@ export class RegisterComponent implements OnInit {
     // console.log(regJSON.firstname + ' : ' + regJSON.email + ' : ' + regJSON.mobile);
 
     const options = {
-      'key': 'rzp_live_KDIXJbcpQwgFxn',
+      'key': 'rzp_test_kvBAU6Bq3UYBA4', // 'rzp_live_KDIXJbcpQwgFxn',
       'amount': paymentForm.membership, // '100', // 2000 paise = INR 20
       'name': 'Kongumanamedai.com',
       'description': paymentForm.description,
@@ -96,6 +96,10 @@ export class RegisterComponent implements OnInit {
       'handler': function (response) {
         console.log(response.razorpay_payment_id);
         console.log(response);
+        paymentForm.chequeNumber = response.razorpay_payment_id;
+        console.log('Payment Form chequeNumber :: ' + paymentForm.chequeNumber);
+        $('#payBtn').hide();
+        $('#finishBtn').show();
       },
       'prefill': {
         'name': regJSON.firstname,
@@ -139,30 +143,30 @@ export class RegisterComponent implements OnInit {
   }
 
   paymentSubmit(paymentFormValue) {
-
-
     const paymentJSON = JSON.stringify(paymentFormValue);
+    console.log('paymentJSON :: ' + paymentJSON);
 
     const regJSON = [];
     regJSON.push(JSON.parse(this.jsonObject));
     regJSON.push(JSON.parse(paymentJSON));
+
     console.log(regJSON);
     console.log(JSON.stringify(regJSON));
-    // this._service.register(JSON.stringify(regJSON)).subscribe(
-    //   data => {
-    //     console.log('Registration successful');
-    //     localStorage.setItem('currentUser', JSON.stringify(data));
-    //     this.router.navigate(['/profile']);
-    //     $('#regForm').hide();
-    //     $('#agreeForm').hide();
-    //     $('#paymentFrm').hide();
-    //     $('#register-popup').hide();
-    //   },
-    //   error => {
-    //     // this.alertService.error(error);
-    //     this.loading = false;
-    //   }
-    // );
+    this._service.register(JSON.stringify(regJSON)).subscribe(
+      data => {
+        console.log('Registration successful');
+        localStorage.setItem('currentUser', JSON.stringify(data));
+        this.router.navigate(['/profile']);
+        $('#regForm').hide();
+        $('#agreeForm').hide();
+        $('#paymentFrm').hide();
+        $('#register-popup').hide();
+      },
+      error => {
+        // this.alertService.error(error);
+        this.loading = false;
+      }
+    );
   }
 
   close() {

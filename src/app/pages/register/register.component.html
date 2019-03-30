@@ -146,8 +146,9 @@
             <input type="text" class="form-control" placeholder="" formControlName="description" />
           </div>
           <div class="right-w3l">
-            <button class="form-control" class="btn btn-success btn-s"
+            <button class="form-control" type="button" id="payBtn" class="btn btn-success btn-s"
               (click)="initPay(paymentForm.value);">Pay</button>
+            <input id="finishBtn" type="submit" class="form-control" value="Finish" />
           </div>
         </div>
 

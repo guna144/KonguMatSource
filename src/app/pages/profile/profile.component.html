@@ -4,6 +4,7 @@
     <!-- top header -->
     <app-header></app-header>
     <!-- top header -->
+    <app-menu [activeMenu]="'profile'"></app-menu>
   </div>
 </header>
 
@@ -80,7 +81,8 @@
               <label for="maritalStatus">
                 <h4>Marital Status</h4>
               </label><br>
-              <label *ngIf="currentUser.maritalStatus">{{currentUser.maritalStatus}}</label>
+              <label
+                *ngIf="currentUser.maritalStatus != null && currentUser.maritalStatus">{{currentUser.maritalStatus}}</label>
               <select *ngIf="!currentUser.maritalStatus" class="form-control" name="maritalStatus"
                 (change)="onChangeMaritalStatus($event.target.value)" formControlName="maritalStatus">
                 <option value="">Select a Marital Status</option>
@@ -146,7 +148,7 @@
               <label for="placeOfBirth">
                 <h4>Place Of Birth</h4>
               </label><br>
-              <label *ngIf="currentUser.placeOfBirth">{{currentUser.placeOfBirth}}</label>
+              <label *ngIf="currentUser.placeOfBirth != null">{{currentUser.placeOfBirth}}</label>
               <input *ngIf="!currentUser.placeOfBirth" type="text" class="form-control" formControlName="placeOfBirth"
                 name="placeOfBirth" id="placeOfBirth" placeholder="enter Place Of Birth"
                 title="enter your Place Of Birth number if any.">
@@ -222,9 +224,11 @@
               <label for="doorNo">
                 <h4>Door No</h4>
               </label><br>
-              <label *ngIf="currentUser.address[0].doorNo">{{currentUser.address[0].doorNo}}</label>
-              <input *ngIf="!currentUser.address[0].doorNo" type="text" class="form-control" name="doorNo"
-                formControlName="doorNo" id="doorNo" placeholder="enter Door No" title="enter your Door No if any.">
+              <label
+                *ngIf="currentUser.address?.length > 0 && currentUser.address[0].doorNo">{{currentUser.address[0].doorNo}}</label>
+              <input *ngIf="!currentUser.address || !currentUser.address[0].doorNo" type="text" class="form-control"
+                name="doorNo" formControlName="doorNo" id="doorNo" placeholder="enter Door No"
+                title="enter your Door No if any.">
             </div>
           </div>
 
@@ -233,9 +237,11 @@
               <label for="street">
                 <h4>Street</h4>
               </label><br>
-              <label *ngIf="currentUser.address[0].street">{{currentUser.address[0].street}}</label>
-              <input *ngIf="!currentUser.address[0].street" type="text" class="form-control" name="streetstreet"
-                formControlName="street" id="street" placeholder="enter street" title="enter your street if any.">
+              <label
+                *ngIf="currentUser.address?.length > 0 && currentUser.address[0].street">{{currentUser.address[0].street}}</label>
+              <input *ngIf="!currentUser.address || !currentUser.address[0].street" type="text" class="form-control"
+                name="streetstreet" formControlName="street" id="street" placeholder="enter street"
+                title="enter your street if any.">
             </div>
           </div>
 
@@ -244,9 +250,10 @@
               <label for="area">
                 <h4>Area</h4>
               </label><br>
-              <label *ngIf="currentUser.address[0].area">{{currentUser.address[0].area}}</label>
-              <input *ngIf="!currentUser.address[0].area" type="text" class="form-control" name="area"
-                formControlName="area" id="area" placeholder="enter area" title="enter your area if any.">
+              <label
+                *ngIf="currentUser.address?.length > 0 && currentUser.address[0].area">{{currentUser.address[0].area}}</label>
+              <input *ngIf="!currentUser.address || !currentUser.address[0].area" type="text" class="form-control"
+                name="area" formControlName="area" id="area" placeholder="enter area" title="enter your area if any.">
             </div>
           </div>
 
@@ -255,9 +262,10 @@
               <label for="city">
                 <h4>City</h4>
               </label><br>
-              <label *ngIf="currentUser.address[0].city">{{currentUser.address[0].city}}</label>
-              <input *ngIf="!currentUser.address[0].city" type="text" class="form-control" name="city"
-                formControlName="city" id="city" placeholder="enter City" title="enter your City if any.">
+              <label
+                *ngIf="currentUser.address?.length > 0 && currentUser.address[0].city">{{currentUser.address[0].city}}</label>
+              <input *ngIf="!currentUser.address || !currentUser.address[0].city" type="text" class="form-control"
+                name="city" formControlName="city" id="city" placeholder="enter City" title="enter your City if any.">
             </div>
           </div>
 
@@ -266,9 +274,11 @@
               <label for="state">
                 <h4>State</h4>
               </label><br>
-              <label *ngIf="currentUser.address[0].state">{{currentUser.address[0].state}}</label>
-              <input *ngIf="!currentUser.address[0].state" type="text" class="form-control" name="state"
-                formControlName="state" id="state" placeholder="enter State" title="enter your state if any.">
+              <label
+                *ngIf="currentUser.address?.length > 0 &&  currentUser.address[0].state">{{currentUser.address[0].state}}</label>
+              <input *ngIf="!currentUser.address || !currentUser.address[0].state" type="text" class="form-control"
+                name="state" formControlName="state" id="state" placeholder="enter State"
+                title="enter your state if any.">
             </div>
           </div>
 
@@ -277,9 +287,11 @@
               <label for="country">
                 <h4>Country</h4>
               </label><br>
-              <label *ngIf="currentUser.address[0].country">{{currentUser.address[0].country}}</label>
-              <input *ngIf="!currentUser.address[0].country" type="text" class="form-control" name="country"
-                formControlName="country" id="country" placeholder="enter country" title="enter your country if any.">
+              <label
+                *ngIf="currentUser.address?.length > 0 &&  currentUser.address[0].country">{{currentUser.address[0].country}}</label>
+              <input *ngIf="!currentUser.address || !currentUser.address[0].country" type="text" class="form-control"
+                name="country" formControlName="country" id="country" placeholder="enter country"
+                title="enter your country if any.">
             </div>
           </div>
 
@@ -288,9 +300,11 @@
               <label for="zipcode">
                 <h4>Zipcode</h4>
               </label><br>
-              <label *ngIf="currentUser.address[0].zipcode">{{currentUser.address[0].zipcode}}</label>
-              <input *ngIf="!currentUser.address[0].zipcode" type="text" class="form-control" name="zipcode"
-                formControlName="zipcode" id="zipcode" placeholder="enter zipcode" title="enter your zipcode if any.">
+              <label
+                *ngIf="currentUser.address?.length > 0 && currentUser.address[0].zipcode">{{currentUser.address[0].zipcode}}</label>
+              <input *ngIf="!currentUser.address || !currentUser.address[0].zipcode" type="text" class="form-control"
+                name="zipcode" formControlName="zipcode" id="zipcode" placeholder="enter zipcode"
+                title="enter your zipcode if any.">
             </div>
           </div>
 
@@ -349,7 +363,7 @@
             </label><br>
             <label *ngIf="currentUser.familyType">{{currentUser.familyType}}</label>
             <select *ngIf="!currentUser.familyType" class="form-control" name="familyType" formControlName="familyType">
-              <option value="">Select a Family Type</option>
+              <option selected value="">Select a Family Type</option>
               <option value="Nuclear">Nuclear</option>
               <option value="Joint">Joint</option>
             </select>
@@ -364,7 +378,7 @@
             <label *ngIf="currentUser.familyStatus">{{currentUser.familyStatus}}</label>
             <select *ngIf="!currentUser.familyStatus" class="form-control" name="familyStatus"
               formControlName="familyStatus">
-              <option value="">Select a Family Status</option>
+              <option selected value="">Select a Family Status</option>
               <option value="Rich">Rich</option>
               <option value="Affluent">Affluent</option>
               <option value="Middle Class">Middle Class</option>
@@ -381,7 +395,7 @@
             <label *ngIf="currentUser.familyValues">{{currentUser.familyValues}}</label>
             <select *ngIf="!currentUser.familyValues" class="form-control" name="familyValues"
               formControlName="familyValues">
-              <option value="">Select a Family Values</option>
+              <option selected value="">Select a Family Values</option>
               <option value="Traditional">Traditional</option>
               <option value="Moderate">Moderate</option>
               <option value="Liberal">Liberal</option>
@@ -397,7 +411,7 @@
             </label><br>
             <label *ngIf="currentUser.foodHabits">{{currentUser.foodHabits}}</label>
             <select *ngIf="!currentUser.foodHabits" class="form-control" name="foodHabits" formControlName="foodHabits">
-              <option value="">Select a Food Habits</option>
+              <option selected value="">Select a Food Habits</option>
               <option value="vegetarian">Vegetarian</option>
               <option value="non Veg">Non Veg </option>
               <option value="eggetarian">Eggetarian</option>
@@ -481,7 +495,7 @@
               <h4>Kootam</h4>
             </label><br>
             <label *ngIf="currentUser.kootam">{{currentUser.kootam}}</label>
-            <select *ngIf="!currentUser.kootam" class="form-control" name="kootam" formControlName="kootam">
+            <select selected *ngIf="!currentUser.kootam" class="form-control" name="kootam" formControlName="kootam">
               <option value="">Select a Kootam</option>
               <option *ngFor="let value of kootamArray" value="{{value}}">{{value}}</option>
             </select>
@@ -495,10 +509,10 @@
                 <h4>Relation Name</h4>
               </label><br>
               <label
-                *ngIf="currentUser.relationShip[0].relationName">{{currentUser.relationShip[0].relationName}}</label>
-              <input *ngIf="!currentUser.relationShip[0].relationName" type="text" class="form-control"
-                name="relationName" id="relationName" formControlName="relationName" placeholder="enter Relation Name"
-                title="enter your Relation Name if any.">
+                *ngIf="currentUser.relationShip?.length > 0 && currentUser.relationShip[0].relationName">{{currentUser.relationShip[0].relationName}}</label>
+              <input *ngIf="!currentUser.relationShip || !currentUser.relationShip[0].relationName" type="text"
+                class="form-control" name="relationName" id="relationName" formControlName="relationName"
+                placeholder="enter Relation Name" title="enter your Relation Name if any.">
             </div>
           </div>
 
@@ -507,10 +521,11 @@
               <label for="relation">
                 <h4>Relation</h4>
               </label><br>
-              <label *ngIf="currentUser.relationShip[0].relation">{{currentUser.relationShip[0].relation}}</label>
-              <select *ngIf="!currentUser.relationShip[0].relation" class="form-control" name="relation"
-                formControlName="relation">
-                <option value="">Select a Relation</option>
+              <label
+                *ngIf="currentUser.relationShip?.length > 0 && currentUser.relationShip[0].relation">{{currentUser.relationShip[0].relation}}</label>
+              <select *ngIf="!currentUser.relationShip || !currentUser.relationShip[0].relation" class="form-control"
+                name="relation" formControlName="relation">
+                <option selected value="">Select a Relation</option>
                 <option value="brother">Brother</option>
                 <option value="sister">Sister</option>
                 <option value="uncle">Uncle</option>
@@ -525,9 +540,9 @@
                 <h4>Relation Mobile</h4>
               </label><br>
               <label
-                *ngIf="currentUser.relationShip[0].relationMobile">{{currentUser.relationShip[0].relationMobile}}</label>
-              <input *ngIf="!currentUser.relationShip[0].relationMobile" type="text" class="form-control"
-                name="relationMobile" id="relationMobile" formControlName="relationMobile"
+                *ngIf="currentUser.relationShip?.length > 0 && currentUser.relationShip[0].relationMobile">{{currentUser.relationShip[0].relationMobile}}</label>
+              <input *ngIf="!currentUser.relationShip || !currentUser.relationShip[0].relationMobile" type="text"
+                class="form-control" name="relationMobile" id="relationMobile" formControlName="relationMobile"
                 placeholder="enter Relation Mobile" title="enter your Relation Mobile if any.">
             </div>
           </div>
@@ -548,7 +563,7 @@
             <label *ngIf="currentUser.physicalStatus">{{currentUser.physicalStatus}}</label>
             <select *ngIf="!currentUser.physicalStatus" class="form-control" name="physicalStatus"
               formControlName="physicalStatus">
-              <option value="">Select a Physical Status</option>
+              <option selected value="">Select a Physical Status</option>
               <option value="Normal">Normal</option>
               <option value="Challenged">Challenged</option>
             </select>
@@ -561,8 +576,9 @@
               <h4>Moon Sign</h4>
             </label><br>
             <label *ngIf="currentUser.moonSign">{{currentUser.moonSign}}</label>
-            <select *ngIf="!currentUser.moonSign" class="form-control" name="moonSign" formControlName="moonSign">
-              <option value="">Select a Moon Sign</option>
+            <select *ngIf="!currentUser.moonSign" (change)="loadStarsData($event.target.value)" class="form-control"
+              name="moonSign" formControlName="moonSign">
+              <option selected value="">Select a Moon Sign</option>
               <option *ngFor="let value of moonSignArray" value="{{value}}">{{value}}</option>
             </select>
           </div>
@@ -575,7 +591,7 @@
             </label><br>
             <label *ngIf="currentUser.star">{{currentUser.star}}</label>
             <select *ngIf="!currentUser.star" class="form-control" name="star" formControlName="star">
-              <option value="">Select a Star</option>
+              <option selected value="">Select a Star</option>
               <option *ngFor="let value of starsArray" value="{{value}}">{{value}}</option>
             </select>
           </div>

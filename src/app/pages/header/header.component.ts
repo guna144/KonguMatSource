@@ -31,18 +31,18 @@ export class HeaderComponent implements OnInit {
 
       });
 
-      //Mouse click on sub menu
+      // Mouse click on sub menu
       $('.submenu').mouseup(function () {
         return false
       });
 
-      //Mouse click on my account link
+      // Mouse click on my account link
       $('.account').mouseup(function () {
         return false
       });
 
 
-      //Document Click
+      // Document Click
       $(document).mouseup(function () {
         $('.submenu').hide();
         $('.account').attr('id', '');

@@ -32,6 +32,7 @@ export class ProfileComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private _service: KonguService,
     private _http: HttpClient, private domSanitizer: DomSanitizer, private fb: FormBuilder) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    console.log('this.currentUser  : ' + JSON.stringify(this.currentUser));
     this.imageRetrieve();
   }
 
@@ -90,16 +91,17 @@ export class ProfileComponent implements OnInit {
       fatherOccupation: ['', Validators.required],
       fatherContactNo: ['', Validators.required],
       moonSign: ['', Validators.required],
+      imagePaths: '',
       lagnam: null,
       star: ['', Validators.required],
       dosham: [false, Validators.required],
       imageCount: 0
     });
 
-    this.profileForm.patchValue(this.currentUser);
     this.loadKootamData();
-    this.loadStarsData();
+    //  this.loadStarsData();
     this.loadMoonSignData();
+    this.profileForm.patchValue(this.currentUser);
   }
 
   fetchFilePath(event) {
@@ -140,17 +142,19 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  loadStarsData() {
-    this._http.get(this.dataURL + '/stars.json').subscribe(data => {
-      this.moonSignArray = data;
+  loadMoonSignData() {
+    this._http.get(this.dataURL + '/moon-sign-stars.json').subscribe(data => {
+      this.moonSignArray = data['moonsign'];
     });
   }
 
-  loadMoonSignData() {
-    this._http.get(this.dataURL + '/moon.sign.json').subscribe(data => {
-      this.starsArray = data;
+  loadStarsData(selectedValue: string) {
+    console.log('selected VAlue : ' + selectedValue);
+    this._http.get(this.dataURL + '/moon-sign-stars.json').subscribe(data => {
+      this.starsArray = data[selectedValue];
     });
   }
+
   profileUpdate(formValue: any) {
 
     formValue.firstname = this.currentUser.firstname;
